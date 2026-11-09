@@ -146,6 +146,8 @@ export interface ProjectImage {
   alt: string;
   /** "portrait" renders inside a phone-shaped frame; "landscape" spans wider. Default: landscape. */
   orientation?: 'portrait' | 'landscape';
+  /** Portrait only: set false when the screenshot already includes its own device frame (e.g. store marketing shots). */
+  frame?: boolean;
   caption?: string;
 }
 

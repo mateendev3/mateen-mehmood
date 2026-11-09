@@ -44,48 +44,70 @@ import type { Project } from '../types/index.ts';
  *  },
  */
 export const projects: Project[] = [
-  // ── SAMPLE DATA ── Replace these with your real projects. They are unpublished,
-  // so they never appear on the live site.
   {
-    slug: 'sample-mobile-app',
-    title: 'Sample Mobile App',
-    subtitle: 'Placeholder case study — replace with a real project',
+    slug: 'jeras',
+    title: 'Jeras · غراس',
+    subtitle: 'Live one-on-one Islamic education for children — Quran, values and languages over video call.',
     summary:
-      'Example entry that shows how a mobile project card and case study look. Not real work — replace or delete.',
+      'An education app connecting parents with qualified teachers for private video lessons in Quran, Islamic values, languages and behaviour — with scheduling, chat and secure payments.',
     category: 'Mobile Apps',
     platforms: ['iOS', 'Android'],
-    technologies: ['Flutter', 'Dart', 'Firebase', 'REST APIs'],
-    year: '2025',
+    // TODO: add the stack you used, e.g. ['Flutter', 'Dart', 'Firebase', 'Stripe']
+    technologies: [],
+    coverImage: '/images/projects/jeras/cover.jpg',
+    coverAlt: 'Jeras app screens: home, course catalogue and checkout',
     overview:
-      'Use this section to explain what the product does, who it serves, and the context you worked in.',
-    challenge: 'Describe the problem the client or product faced, in one or two short paragraphs.',
-    solution: 'Explain your technical approach and the key decisions you made.',
-    myRole: ['Example: Flutter feature development', 'Example: API integration', 'Example: App Store release'],
-    teamContext: 'Example: Worked alongside a product designer and two backend engineers.',
+      'Jeras helps parents instil Islamic values in their children in a fun, interactive way. Families sign up, get matched with an educational supervisor, then choose a course and a teacher and book private one-on-one video sessions at times that suit them.\n\nPrograms cover bedtime stories, Quran memorisation, language learning and behaviour adjustment, offered in multiple languages — with regular progress monitoring by an educational supervisor and personalised learning plans.',
+    // TODO: describe your own contribution, e.g. 'Built the Flutter app', 'Video-call integration', 'Stripe payments'
+    myRole: [],
     features: [
-      { title: 'Example feature', description: 'Short description of a feature you built.' },
-      { title: 'Another feature', description: 'Add an optional screenshot to any feature.' },
-      { title: 'Third feature', description: 'Keep each description to one or two sentences.' },
+      {
+        title: 'One-on-one video lessons',
+        description: 'Private, interactive video sessions between each child and a qualified educator.',
+      },
+      {
+        title: '15+ interactive courses',
+        description: 'Bedtime stories, Quran memorisation, Islamic values, private lessons and languages — for all ages and levels.',
+      },
+      {
+        title: 'Teacher discovery & profiles',
+        description: 'Browse expert teachers by subject, rating and specialisation, then book directly from their profile.',
+      },
+      {
+        title: 'Flexible scheduling',
+        description: 'Book sessions at convenient times and track upcoming and past lessons in one place.',
+      },
+      {
+        title: 'Chat & supervisor support',
+        description: 'Message teachers directly and get guidance and progress reports from an educational supervisor.',
+      },
+      {
+        title: 'Secure payments',
+        description: 'Checkout with cards via Stripe or account balance, with discount codes and confirmed bookings.',
+      },
     ],
-    gallery: [],
-    results: [],
-    links: {},
+    gallery: [
+      { src: '/images/projects/jeras/screen-1.jpg', alt: 'Jeras home screen with featured and top-rated courses', orientation: 'portrait', frame: false },
+      { src: '/images/projects/jeras/screen-2.jpg', alt: 'Course catalogue with Bedtime Stories and Private Lessons', orientation: 'portrait', frame: false },
+      { src: '/images/projects/jeras/screen-3.jpg', alt: 'Bedtime Stories course details', orientation: 'portrait', frame: false },
+      { src: '/images/projects/jeras/screen-4.jpg', alt: 'Teacher directory with ratings and prices', orientation: 'portrait', frame: false },
+      { src: '/images/projects/jeras/screen-5.jpg', alt: 'Teacher profile with booking options', orientation: 'portrait', frame: false },
+      { src: '/images/projects/jeras/screen-6.jpg', alt: 'Support chat with the educational supervisor', orientation: 'portrait', frame: false },
+      { src: '/images/projects/jeras/screen-7.jpg', alt: 'Upcoming and expired lesson schedule', orientation: 'portrait', frame: false },
+      { src: '/images/projects/jeras/screen-8.jpg', alt: 'Checkout with discount code, account balance and Stripe card payment', orientation: 'portrait', frame: false },
+    ],
+    results: [
+      '10K+ downloads on Google Play',
+      '5.0★ rating on the App Store',
+      'Live on iOS and Android since 2022, with regular updates',
+    ],
+    links: {
+      appStore: 'https://apps.apple.com/eg/app/jeras-%D8%BA%D8%B1%D8%A7%D8%B3/id1612021922',
+      playStore: 'https://play.google.com/store/apps/details?id=com.app.jeras',
+      website: 'https://www.jeras.io/?lang=en',
+    },
     featured: true,
-    published: false,
-  },
-  {
-    slug: 'sample-web-dashboard',
-    title: 'Sample Web Dashboard',
-    subtitle: 'Placeholder case study — replace with a real project',
-    summary: 'Example web application entry used to preview filtering and related projects. Not real work.',
-    category: 'Web Applications',
-    platforms: ['Web'],
-    technologies: ['TypeScript', 'React', 'REST APIs'],
-    overview: 'Placeholder overview.',
-    myRole: ['Example: Frontend development'],
-    features: [],
-    gallery: [],
-    featured: true,
-    published: false,
+    published: true,
+    order: 1,
   },
 ];

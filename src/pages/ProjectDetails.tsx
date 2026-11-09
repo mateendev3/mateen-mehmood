@@ -135,7 +135,7 @@ function CaseStudy({ project }: { project: Project }) {
             <Block title="Screenshots">
               <div className="space-y-6">
                 {portrait.length > 0 && (
-                  <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
+                  <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
                     {portrait.map((img) => (
                       <li key={img.src}>
                         <PhoneFrame image={img} />
@@ -283,6 +283,20 @@ function Shot({ image, className }: { image: ProjectImage; className?: string })
 }
 
 function PhoneFrame({ image }: { image: ProjectImage }) {
+  if (image.frame === false) {
+    return (
+      <figure>
+        <img
+          src={asset(image.src)}
+          alt={image.alt}
+          loading="lazy"
+          decoding="async"
+          className="w-full rounded-2xl border border-border bg-surface-2 shadow-[var(--shadow-soft)] transition-transform duration-300 hover:-translate-y-1"
+        />
+        {image.caption && <figcaption className="mt-3 text-center text-sm text-fg-muted">{image.caption}</figcaption>}
+      </figure>
+    );
+  }
   return (
     <figure>
       <div className="rounded-[2rem] border border-border-strong bg-surface p-1.5 shadow-[var(--shadow-lift)]">

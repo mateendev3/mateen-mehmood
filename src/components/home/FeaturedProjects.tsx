@@ -21,13 +21,19 @@ export function FeaturedProjects() {
           </Button>
         }
       />
-      <div className="grid gap-6 md:grid-cols-2">
-        {featuredProjects.map((project, i) => (
-          <Reveal key={project.slug} delay={(i % 2) * 0.08}>
-            <ProjectCard project={project} />
-          </Reveal>
-        ))}
-      </div>
+      {featuredProjects.length === 1 ? (
+        <Reveal>
+          <ProjectCard project={featuredProjects[0]} wide />
+        </Reveal>
+      ) : (
+        <div className="grid gap-6 md:grid-cols-2">
+          {featuredProjects.map((project, i) => (
+            <Reveal key={project.slug} delay={(i % 2) * 0.08}>
+              <ProjectCard project={project} />
+            </Reveal>
+          ))}
+        </div>
+      )}
     </Section>
   );
 }
