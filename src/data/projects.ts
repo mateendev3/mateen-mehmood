@@ -108,7 +108,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 8,
+    order: 9,
   },
   {
     slug: 'dream',
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 7,
+    order: 8,
   },
   {
     slug: 'braiding-nairobi',
@@ -486,7 +486,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 6,
+    order: 7,
   },
   {
     slug: 'etgahwa',
@@ -548,5 +548,66 @@ export const projects: Project[] = [
     featured: false,
     published: true,
     order: 2,
+  },
+  {
+    slug: 'my-sudani',
+    title: 'My Sudani',
+    subtitle: 'Sudani’s digital self-care app — balance, bundles, rewards and digital services with zero data cost.',
+    summary:
+      'The official self-care app for Sudani subscribers: track balance and usage, buy or build custom bundles, earn loyalty rewards and access digital services — at zero data cost.',
+    category: 'Mobile Apps',
+    platforms: ['Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    coverImage: '/images/projects/my-sudani/cover.jpg',
+    coverAlt: 'My Sudani app screens: services, home usage dashboard and rewards',
+    client: 'Sudani Telecommunication',
+    overview:
+      'My Sudani is the official digital self-care app from Sudani, one of Sudan’s mobile operators. It gives every subscriber full control of their telecom services — quickly, securely and without using any mobile data.\n\nThe app combines account management with engagement features: tailored bundles and a custom plan builder, a loyalty programme with daily rewards, referrals, caller tunes, and a marketplace of digital content spanning entertainment, education and games.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Balance & usage dashboard',
+        description: 'Remaining data, voice and SMS, current balance, and active subscriptions at a glance.',
+      },
+      {
+        title: 'Bundles & custom plans',
+        description: 'Subscribe to smart offers or build your own plan by choosing data, minutes, SMS and validity.',
+      },
+      {
+        title: 'Loyalty & rewards',
+        description: 'Earn points and daily streaks, then redeem them for offers such as free data.',
+      },
+      {
+        title: 'Recharge & payments',
+        description: 'Add balance to any Sudani number with bank-linked payment methods.',
+      },
+      {
+        title: 'Digital services & caller tunes',
+        description: 'A marketplace of entertainment, education and games, plus personalised ringback tones.',
+      },
+      {
+        title: 'Zero data cost & support',
+        description: 'Use the app without consuming data, with feedback, complaints and support built in.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/my-sudani/screen-1.jpg', alt: 'Home dashboard with remaining usage and balance', orientation: 'portrait', frame: false },
+      { src: '/images/projects/my-sudani/screen-2.jpg', alt: 'Menu to manage numbers, profile and subscriptions', orientation: 'portrait', frame: false },
+      { src: '/images/projects/my-sudani/screen-3.jpg', alt: 'Services and bundle subscriptions', orientation: 'portrait', frame: false },
+      { src: '/images/projects/my-sudani/screen-4.jpg', alt: 'My Sudani — the first of its kind in Sudan', orientation: 'portrait', frame: false },
+      { src: '/images/projects/my-sudani/screen-5.jpg', alt: 'Custom plan builder with data, minutes and SMS', orientation: 'portrait', frame: false },
+      { src: '/images/projects/my-sudani/screen-6.jpg', alt: 'Add balance with a payment method', orientation: 'portrait', frame: false },
+      { src: '/images/projects/my-sudani/screen-7.jpg', alt: 'Loyalty rewards and redeemable offers', orientation: 'portrait', frame: false },
+      { src: '/images/projects/my-sudani/screen-8.jpg', alt: 'Contact us and proposed enhancements', orientation: 'portrait', frame: false },
+    ],
+    results: ['1M+ downloads on Google Play', '24K+ reviews on Google Play', 'Live on Android with regular updates'],
+    links: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.selfcare.link',
+    },
+    featured: false,
+    published: true,
+    order: 6,
   },
 ];
