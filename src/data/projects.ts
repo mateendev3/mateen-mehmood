@@ -177,4 +177,251 @@ export const projects: Project[] = [
     published: true,
     order: 2,
   },
+  {
+    slug: 'braiding-nairobi',
+    title: 'Braiding Nairobi',
+    subtitle: 'A two-sided marketplace bringing professional hair braiding to clients’ doorsteps.',
+    summary:
+      'A booking marketplace connecting clients with screened braiders and salons — real-photo styles, reviews, in-app chat, reminders and secure upfront payments.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    coverImage: '/images/projects/braiding-nairobi/cover.jpg',
+    coverAlt: 'Braiding Nairobi app screens: client home, salon profile and chat',
+    overview:
+      'Braiding Nairobi brings the salon experience to the client’s doorstep. Clients explore braiding styles through real photos, compare prices and reviews, and book screened braiders for home appointments in real time.\n\nFor salons and braiders it is a growth tool: exposure to new clients, help filling last-minute cancellations, premium pricing for popular time slots, protection against no-shows, and a professional online booking page.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Style discovery with real photos',
+        description: 'Browse braiding styles, prices and reviews to find the perfect look and braider.',
+      },
+      {
+        title: 'Real-time booking',
+        description: 'Book home appointments, find last-minute availability and get reminders so sessions are never missed.',
+      },
+      {
+        title: 'Client–braider chat',
+        description: 'Message your braider directly; transport and logistics are handled for you.',
+      },
+      {
+        title: 'Secure upfront payments',
+        description: 'Payments are processed before the service begins, with deposits and no-show protection for salons.',
+      },
+      {
+        title: 'Salon growth tools',
+        description: 'Marketing exposure, cancellation backfill and peak-time pricing to increase salon revenue.',
+      },
+      {
+        title: 'Screened professionals',
+        description: 'Braiders are vetted and submit portfolios before joining, so clients can book with confidence.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/braiding-nairobi/screen-1.jpg', alt: 'Salon listing on the client home screen', orientation: 'portrait', frame: false },
+      { src: '/images/projects/braiding-nairobi/screen-2.jpg', alt: 'Braiding Nairobi app, built for African women', orientation: 'portrait', frame: false },
+      { src: '/images/projects/braiding-nairobi/screen-3.jpg', alt: 'Join as a client or as a salon', orientation: 'portrait', frame: false },
+      { src: '/images/projects/braiding-nairobi/screen-4.jpg', alt: 'Salon profile with styles, prices and reviews', orientation: 'portrait', frame: false },
+      { src: '/images/projects/braiding-nairobi/screen-5.jpg', alt: 'Request a braider to your home in real time', orientation: 'portrait', frame: false },
+    ],
+    results: ['5.0★ rating on the App Store', 'Live on iOS and Android since 2024, with regular updates'],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/braiding-nairobi/id6474686521',
+      playStore: 'https://play.google.com/store/apps/details?id=com.braidingnairobi.braiding_nairobi',
+      website: 'https://www.braidingnairobi.com/',
+    },
+    featured: false,
+    published: true,
+    order: 3,
+  },
+  {
+    slug: 'talli',
+    title: 'Talli: A Social Scoreboard',
+    subtitle: 'One app, every game — track wins, rivalries and lifetime stats with friends.',
+    summary:
+      'A social scoreboard for everyday games and sports: live scorekeeping, head-to-head rivalries, stats dashboards and a social feed of friends’ results.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    coverImage: '/images/projects/talli/cover.jpg',
+    coverAlt: 'Talli app screens: profile stats, versus profile and game submission',
+    overview:
+      'Talli turns everyday games into rivalries. Whether it is a pickleball match, a board game or a video game, players record scores, build lifetime stats and see who really comes out on top — no more pen and paper or mental maths.\n\nIt is as much a community as a score tracker: friends follow each other’s results, react to wins and keep each other accountable.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Personal profiles',
+        description: 'A lifetime record of wins, losses and draws that grows with every game played.',
+      },
+      {
+        title: 'Versus profiles',
+        description: 'Detailed head-to-head breakdowns against every competitor to settle rivalries.',
+      },
+      {
+        title: 'Live scorekeeping',
+        description: 'Keep live scores for up to four players or teams — great for doubles and group games.',
+      },
+      {
+        title: 'Game stats dashboard',
+        description: 'Most played games, top competitors, top teammates, win/loss trends and more.',
+      },
+      {
+        title: 'Social feed',
+        description: 'A real-time feed of friends’ games with Likes and “Oh Snap” reactions.',
+      },
+      {
+        title: 'Gloat notifications',
+        description: 'Send a friendly gloat after a close win to keep the banter going.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/talli/screen-1.jpg', alt: 'Talli — a social scoreboard', orientation: 'portrait', frame: false },
+      { src: '/images/projects/talli/screen-2.jpg', alt: 'Create a profile with lifetime stats', orientation: 'portrait', frame: false },
+      { src: '/images/projects/talli/screen-3.jpg', alt: 'Versus profile comparing two competitors', orientation: 'portrait', frame: false },
+      { src: '/images/projects/talli/screen-4.jpg', alt: 'Choose the game or activity you played', orientation: 'portrait', frame: false },
+      { src: '/images/projects/talli/screen-5.jpg', alt: 'Submit the result of a game', orientation: 'portrait', frame: false },
+    ],
+    results: ['5.0★ rating on the App Store', 'Live on iOS and Android since 2024'],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/talli-a-social-scoreboard/id6581483176',
+      playStore: 'https://play.google.com/store/apps/details?id=com.talli.talli.talli',
+    },
+    featured: false,
+    published: true,
+    order: 4,
+  },
+  {
+    slug: 'rox',
+    title: 'ROX – Real Online Experience',
+    subtitle: 'Jazz’s next-generation lifestyle app — mobile packages, perks, events and gaming in one place.',
+    summary:
+      'A large-scale lifestyle and telecom app for Jazz: manage mobile usage and packages, unlock perks and discounts, discover events and play games for rewards.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    coverImage: '/images/projects/rox/cover.jpg',
+    coverAlt: 'ROX app screens: package selection, home and perks',
+    client: 'Jazz (Pakistan Mobile Communications Ltd)',
+    overview:
+      'ROX is a next-generation lifestyle app from Jazz, one of Pakistan’s largest mobile networks. Users manage their mobile usage, subscribe to high-allowance packages, and get access to exclusive perks and experiences — all in one place.\n\nThe app brings together ROX Connect (monthly packages for individuals and groups), ROX Vault (premium perks, discounts and giveaways), ROX Life (live events, concerts, gaming tournaments and merchandise), ROX High Street (fashion and handset deals) and ROX Arena (casual games with rewards and leaderboards).',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Packages & subscriptions',
+        description: 'Pick a “vibe” — high-allowance data and minutes bundles with bundled subscriptions and cashback.',
+      },
+      {
+        title: 'Perks & rewards',
+        description: 'Exclusive discounts and giveaways from partner brands for ROX subscribers.',
+      },
+      {
+        title: 'Entertainment & gaming',
+        description: 'Streaming, music and gaming add-ons, plus ROX Arena games with rewards and leaderboards.',
+      },
+      {
+        title: 'Usage & account management',
+        description: 'Track internet, calls, SMS, subscriptions and recharges, and manage your balance.',
+      },
+      {
+        title: 'Seamless onboarding',
+        description: 'Join with a new SIM, switch from prepaid or postpaid, or port from another network.',
+      },
+      {
+        title: 'In-app support',
+        description: 'FAQs, video tutorials, walkthroughs, suggestions and complaint tracking in one place.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/rox/screen-1.jpg', alt: 'Join the squad onboarding options', orientation: 'portrait' },
+      { src: '/images/projects/rox/screen-2.jpg', alt: 'ROX login screen', orientation: 'portrait' },
+      { src: '/images/projects/rox/screen-3.jpg', alt: 'Pick your vibe package selection', orientation: 'portrait' },
+      { src: '/images/projects/rox/screen-4.jpg', alt: 'Add-ons for streaming, music and gaming', orientation: 'portrait' },
+      { src: '/images/projects/rox/screen-5.jpg', alt: 'Home dashboard with remaining package and perks', orientation: 'portrait' },
+      { src: '/images/projects/rox/screen-6.jpg', alt: 'Support hub with FAQs, tutorials and complaints', orientation: 'portrait' },
+      { src: '/images/projects/rox/screen-7.jpg', alt: 'Account with balance and subscription usage', orientation: 'portrait' },
+      { src: '/images/projects/rox/screen-8.jpg', alt: 'Usage logs for internet, calls and SMS', orientation: 'portrait' },
+    ],
+    results: [
+      '10M+ downloads on Google Play',
+      '4.6★ from 10,700+ ratings on the App Store',
+      '103K+ reviews on Google Play',
+      'Live on iOS and Android since 2024, with frequent releases',
+    ],
+    links: {
+      appStore: 'https://apps.apple.com/pk/app/rox-real-online-experience/id6469692120',
+      playStore: 'https://play.google.com/store/apps/details?id=com.jazz.rox',
+      website: 'https://rox.com.pk',
+    },
+    featured: true,
+    published: true,
+    order: 5,
+  },
+  {
+    slug: 'layla',
+    title: 'Layla Eco',
+    subtitle: 'The app for an AI-powered smart sensor that helps property managers save energy and stay in control.',
+    summary:
+      'Companion app for Layla’s AI-powered property sensor — air, comfort, noise and presence insights, sleep scores, smart alerts and remote AC control across every property.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    coverImage: '/images/projects/layla/cover.jpg',
+    coverAlt: 'Layla Eco app screens: sleep score, property summary and presence alerts',
+    overview:
+      'Layla is an AI-powered, plug-and-play smart sensor for properties. It automates energy saving, enhances security and helps prevent unexpected events — and the Layla Eco app gives property managers and homeowners full control from one place.\n\nThe app turns raw sensor data into clear, actionable insight: a daily score for air, comfort and quiet in every room, explanations of what happened overnight and what to do about it, privacy-first presence detection, and remote control of air conditioning — across a single home or a whole portfolio.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Daily property score',
+        description: 'One score for air quality, comfort and quiet in every room — your home, finally explained.',
+      },
+      {
+        title: 'Sleep score & AI insights',
+        description: 'See what helped or hurt last night, and get one clear recommendation for tonight.',
+      },
+      {
+        title: 'Real-time noise alerts',
+        description: 'Know when a party starts — decibel monitoring and alerts without recording a word.',
+      },
+      {
+        title: 'Privacy-first presence',
+        description: 'Radar-based presence and motion alerts with no cameras and no images recorded.',
+      },
+      {
+        title: 'Healthy air, room by room',
+        description: 'Live CO₂, temperature and humidity, with nudges to open a window when air gets stale.',
+      },
+      {
+        title: 'Energy saving & AC control',
+        description: 'Control air conditioning remotely with Eco mode and schedules, across every property.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/layla/screen-1.jpg', alt: 'Property summary with air, comfort and quiet scores', orientation: 'portrait', frame: false },
+      { src: '/images/projects/layla/screen-2.jpg', alt: 'Sleep score explaining the night', orientation: 'portrait', frame: false },
+      { src: '/images/projects/layla/screen-3.jpg', alt: 'AI insight with a recommendation for tonight', orientation: 'portrait', frame: false },
+      { src: '/images/projects/layla/screen-4.jpg', alt: 'Real-time noise alerts', orientation: 'portrait', frame: false },
+      { src: '/images/projects/layla/screen-5.jpg', alt: 'Camera-free presence and motion detection', orientation: 'portrait', frame: false },
+      { src: '/images/projects/layla/screen-6.jpg', alt: 'Indoor air quality room by room', orientation: 'portrait', frame: false },
+      { src: '/images/projects/layla/screen-7.jpg', alt: 'Remote AC control with Eco mode', orientation: 'portrait', frame: false },
+      { src: '/images/projects/layla/screen-8.jpg', alt: 'All properties in one app', orientation: 'portrait', frame: false },
+    ],
+    results: ['5.0★ rating on the App Store', 'Live on iOS and Android since 2023, with regular updates'],
+    links: {
+      appStore: 'https://apps.apple.com/ua/app/layla-eco/id1619471557',
+      playStore: 'https://play.google.com/store/apps/details?id=com.layla.electric.layla',
+      website: 'https://layla.eco',
+    },
+    featured: true,
+    published: true,
+    order: 6,
+  },
 ];

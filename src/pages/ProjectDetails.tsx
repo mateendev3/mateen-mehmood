@@ -305,7 +305,7 @@ function PhoneFrame({ image }: { image: ProjectImage }) {
           alt={image.alt}
           loading="lazy"
           decoding="async"
-          className="aspect-[9/19.5] w-full rounded-[1.6rem] bg-surface-2 object-cover"
+          className="h-auto w-full rounded-[1.6rem] bg-surface-2"
         />
       </div>
       {image.caption && <figcaption className="mt-3 text-center text-sm text-fg-muted">{image.caption}</figcaption>}
