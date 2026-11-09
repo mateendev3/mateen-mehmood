@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--seo-->
+    <title>Mateen Mehmood — Freelance Mobile App Developer</title>
+    <meta name="description" content="Freelance software developer specialising in mobile apps." />
+    <!--/seo-->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#08090d" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Apply the saved/system theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.toggle('dark', dark);
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p style="padding:2rem;font-family:system-ui,sans-serif">
+        This site needs JavaScript to display its content. Please enable JavaScript and reload.
+      </p>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
