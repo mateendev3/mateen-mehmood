@@ -1,10 +1,10 @@
 import { useId, useState, type FormEvent, type ReactNode } from 'react';
 import { useSearchParams } from 'react-router';
-import { AlertCircle, CheckCircle2, Loader2, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Loader2, Mail, Send } from 'lucide-react';
 import { activeServices } from '../../data/services';
 import { contactOptions } from '../../data/site';
 import { profile } from '../../data/profile';
-import { formspreeId, formsubmitKey, hasEmail } from '../../lib/content';
+import { formspreeId, formsubmitKey, hasEmail, web3formsKey } from '../../lib/content';
 import { cn, mailto } from '../../lib/utils';
 import { Button } from '../ui/Button';
 
@@ -33,6 +33,19 @@ function validate(values: Fields): Errors {
   return errors;
 }
 
+/** Pre-filled email (used for the email-app mode and as a fallback when sending fails). */
+function mailtoHref(values: Fields) {
+  const details = [
+    `Name: ${values.name.trim()}`,
+    `Email: ${values.email.trim()}`,
+    `Service: ${values.service}`,
+    values.budget ? `Budget: ${values.budget}` : '',
+    values.timeline ? `Timeline: ${values.timeline}` : '',
+  ].filter(Boolean);
+  const body = [values.description.trim(), '', '—', ...details].join('\n');
+  return mailto(profile.email, `Project enquiry: ${values.service}`, body);
+}
+
 /**
  * Contact form for static hosting:
  *  - with a Formspree ID → submits directly (no backend needed);
@@ -42,13 +55,15 @@ function validate(values: Fields): Errors {
 export function ContactForm() {
   const [params] = useSearchParams();
   const preselected = activeServices.find((s) => s.id === params.get('service'))?.title ?? '';
-  const mode: 'formspree' | 'formsubmit' | 'mailto' | null = formspreeId
-    ? 'formspree'
-    : formsubmitKey
-      ? 'formsubmit'
-      : hasEmail
-        ? 'mailto'
-        : null;
+  const mode: 'web3forms' | 'formspree' | 'formsubmit' | 'mailto' | null = web3formsKey
+    ? 'web3forms'
+    : formspreeId
+      ? 'formspree'
+      : formsubmitKey
+        ? 'formsubmit'
+        : hasEmail
+          ? 'mailto'
+          : null;
 
   const [values, setValues] = useState<Fields>({
     name: '',
@@ -81,19 +96,13 @@ export function ContactForm() {
     if (gotcha) return; // bot
 
     if (mode === 'mailto') {
-      const details = [
-        `Name: ${values.name.trim()}`,
-        `Email: ${values.email.trim()}`,
-        `Service: ${values.service}`,
-        values.budget ? `Budget: ${values.budget}` : '',
-        values.timeline ? `Timeline: ${values.timeline}` : '',
-      ].filter(Boolean);
-      const body = [values.description.trim(), '', '—', ...details].join('\n');
-      window.location.href = mailto(profile.email, `Project enquiry: ${values.service}`, body);
+      window.location.href = mailtoHref(values);
       return;
     }
 
     setStatus('submitting');
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
     try {
       const subject = `New project enquiry: ${values.service} — ${values.name.trim()}`;
       const payload = {
@@ -104,26 +113,41 @@ export function ContactForm() {
         timeline: values.timeline || 'Not specified',
         message: values.description.trim(),
       };
+      const request = (url: string, body: object) =>
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(body),
+          signal: controller.signal,
+        });
       const response =
-        mode === 'formsubmit'
-          ? await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(formsubmitKey)}`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-              body: JSON.stringify({ ...payload, _subject: subject, _replyto: payload.email, _template: 'table', _captcha: 'false' }),
+        mode === 'web3forms'
+          ? await request('https://api.web3forms.com/submit', {
+              access_key: web3formsKey,
+              subject,
+              from_name: `${payload.name} via portfolio`,
+              replyto: payload.email,
+              ...payload,
             })
-          : await fetch(`https://formspree.io/f/${formspreeId}`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-              body: JSON.stringify({ ...payload, _subject: subject, _replyto: payload.email }),
-            });
+          : mode === 'formspree'
+            ? await request(`https://formspree.io/f/${formspreeId}`, { ...payload, _subject: subject, _replyto: payload.email })
+            : await request(`https://formsubmit.co/ajax/${encodeURIComponent(formsubmitKey)}`, {
+                ...payload,
+                _subject: subject,
+                _replyto: payload.email,
+                _template: 'table',
+                _captcha: 'false',
+              });
       if (!response.ok) throw new Error(`Request failed (${response.status})`);
-      if (mode === 'formsubmit') {
+      if (mode !== 'formspree') {
         const result = (await response.json().catch(() => ({}))) as { success?: boolean | string };
-        if (String(result.success) !== 'true') throw new Error('FormSubmit rejected the message');
+        if (String(result.success) !== 'true') throw new Error('Form service rejected the message');
       }
       setStatus('success');
     } catch {
       setStatus('error');
+    } finally {
+      window.clearTimeout(timeout);
     }
   }
 
@@ -223,21 +247,28 @@ export function ContactForm() {
       </div>
 
       {status === 'error' && (
-        <p role="alert" className="mt-6 flex items-start gap-2 rounded-xl border border-danger/30 bg-danger/5 p-4 text-sm text-danger">
-          <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-          <span>
-            Sorry — your message couldn't be sent. Please try again
-            {hasEmail ? (
-              <>
-                {' '}or email me directly at{' '}
-                <a className="font-semibold underline" href={`mailto:${profile.email}`}>
+        <div role="alert" className="mt-6 rounded-xl border border-danger/30 bg-danger/5 p-4 text-sm">
+          <p className="flex items-start gap-2 text-danger">
+            <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+            <span>Sorry — the message couldn't be sent right now. Your details are still here.</span>
+          </p>
+          {hasEmail && (
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 pl-6">
+              <a
+                href={mailtoHref(values)}
+                className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 font-semibold text-primary-fg transition-colors hover:bg-primary-hover"
+              >
+                <Mail className="size-3.5" aria-hidden="true" /> Send with your email app instead
+              </a>
+              <span className="text-fg-muted">
+                or write to{' '}
+                <a className="font-semibold text-fg underline" href={`mailto:${profile.email}`}>
                   {profile.email}
                 </a>
-              </>
-            ) : null}
-            .
-          </span>
-        </p>
+              </span>
+            </div>
+          )}
+        </div>
       )}
 
       <div className="mt-7 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">

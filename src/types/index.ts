@@ -108,6 +108,12 @@ export interface Profile {
      * The first submission sends you an activation email; click it once and messages start arriving.
      */
     formsubmit?: string;
+    /**
+     * Web3Forms access key (https://web3forms.com) — free, reliable, no account: enter your email
+     * on their site and the key is emailed to you. Public by design; safe in frontend code.
+     * Takes priority over FormSubmit and Formspree when set.
+     */
+    web3formsKey?: string;
     responseTime?: string;
   };
 }

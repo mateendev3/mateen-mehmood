@@ -5,6 +5,7 @@ declare const __SITE_URL__: string;
 
 interface ImportMetaEnv {
   readonly VITE_FORMSPREE_ID?: string;
+  readonly VITE_WEB3FORMS_KEY?: string;
 }
 
 interface ImportMeta {

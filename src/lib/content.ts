@@ -44,5 +44,6 @@ export const socials = profile.socials.filter((s) => s.url.trim() !== '');
 export const hasEmail = profile.email.trim() !== '';
 export const formspreeId = (import.meta.env.VITE_FORMSPREE_ID || profile.contact.formspreeId || '').trim();
 export const formsubmitKey = (profile.contact.formsubmit || '').trim();
+export const web3formsKey = (import.meta.env.VITE_WEB3FORMS_KEY || profile.contact.web3formsKey || '').trim();
 /** True when the contact form can deliver messages directly (no email app needed). */
-export const hasFormService = !!formspreeId || !!formsubmitKey;
+export const hasFormService = !!web3formsKey || !!formspreeId || !!formsubmitKey;

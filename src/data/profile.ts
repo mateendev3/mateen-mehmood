@@ -200,7 +200,9 @@ export const profile: Profile = {
     // Optional: create a free form at https://formspree.io and paste its ID here (e.g. 'xyzabcd').
     // Without it, the contact form opens the visitor's email app with the message pre-filled.
     formspreeId: '',
-    // Messages from the contact form are delivered straight to this inbox via FormSubmit.
+    // Contact form delivery (first one set wins): Web3Forms → Formspree → FormSubmit → email app.
+    // Get a free Web3Forms key at https://web3forms.com (it is emailed to you) and paste it here.
+    web3formsKey: '',
     formsubmit: 'mateendev3@gmail.com',
     // Optional, e.g. 'I usually reply within 1–2 business days.' Leave empty to hide.
     responseTime: '',
