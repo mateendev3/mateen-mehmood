@@ -1,6 +1,6 @@
-import { useId, useState, type FormEvent, type ReactNode } from 'react';
+import { useId, useState, type ComponentPropsWithoutRef, type FormEvent, type ReactNode } from 'react';
 import { useSearchParams } from 'react-router';
-import { AlertCircle, CheckCircle2, Loader2, Mail, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronDown, Loader2, Mail, Send } from 'lucide-react';
 import { activeServices } from '../../data/services';
 import { contactOptions } from '../../data/site';
 import { profile } from '../../data/profile';
@@ -190,7 +190,7 @@ export function ContactForm() {
 
         <Field id="service" label="Service required" error={errors.service} required className="sm:col-span-2">
           {(props) => (
-            <select {...props} value={values.service} onChange={(e) => update('service')(e.target.value)}>
+            <Select {...props} value={values.service} onChange={(e) => update('service')(e.target.value)}>
               <option value="" disabled>
                 Select a service…
               </option>
@@ -200,7 +200,7 @@ export function ContactForm() {
                 </option>
               ))}
               <option value={OTHER}>{OTHER}</option>
-            </select>
+            </Select>
           )}
         </Field>
 
@@ -218,22 +218,22 @@ export function ContactForm() {
 
         <Field id="budget" label="Estimated budget" optional>
           {(props) => (
-            <select {...props} value={values.budget} onChange={(e) => update('budget')(e.target.value)}>
+            <Select {...props} value={values.budget} onChange={(e) => update('budget')(e.target.value)}>
               <option value="">Prefer not to say</option>
               {contactOptions.budgets.map((b) => (
                 <option key={b}>{b}</option>
               ))}
-            </select>
+            </Select>
           )}
         </Field>
         <Field id="timeline" label="Expected timeline" optional>
           {(props) => (
-            <select {...props} value={values.timeline} onChange={(e) => update('timeline')(e.target.value)}>
+            <Select {...props} value={values.timeline} onChange={(e) => update('timeline')(e.target.value)}>
               <option value="">Prefer not to say</option>
               {contactOptions.timelines.map((t) => (
                 <option key={t}>{t}</option>
               ))}
-            </select>
+            </Select>
           )}
         </Field>
 
@@ -346,6 +346,21 @@ function Field({
           {error}
         </p>
       )}
+    </div>
+  );
+}
+
+/** Native select with a custom, evenly spaced chevron (consistent across browsers and themes). */
+function Select({ className, children, ...props }: ComponentPropsWithoutRef<'select'>) {
+  return (
+    <div className="relative">
+      <select {...props} className={cn(className, 'cursor-pointer appearance-none pr-11')}>
+        {children}
+      </select>
+      <ChevronDown
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-fg-subtle"
+      />
     </div>
   );
 }
