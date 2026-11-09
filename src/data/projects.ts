@@ -108,7 +108,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 1,
+    order: 6,
   },
   {
     slug: 'dream',
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 2,
+    order: 5,
   },
   {
     slug: 'braiding-nairobi',
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 3,
+    order: 4,
   },
   {
     slug: 'talli',
@@ -292,7 +292,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 4,
+    order: 3,
   },
   {
     slug: 'rox',
@@ -360,7 +360,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 5,
+    order: 2,
   },
   {
     slug: 'layla',
@@ -422,6 +422,6 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 6,
+    order: 1,
   },
 ];
