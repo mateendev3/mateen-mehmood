@@ -1,359 +1,496 @@
-import { useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
+import { Link } from 'react-router';
 import { AnimatePresence, m, useInView, useReducedMotion } from 'motion/react';
-import {
-  Bot,
-  BrainCircuit,
-  Cloud,
-  Code,
-  Database,
-  Globe,
-  Send,
-  Smartphone,
-  Sparkles,
-  Zap,
-  type LucideProps,
-} from 'lucide-react';
+import { ArrowRight, Bot, Check, Database, Mail, ShoppingCart, Sparkles } from 'lucide-react';
+import { activeServices } from '../../data/services';
+import type { Service, ServicePreviewKind } from '../../types';
 import { cn } from '../../lib/utils';
+import { TechLogo, hasTechLogo } from '../ui/TechLogo';
+
+const ROTATE_MS = 5500;
+const ease = [0.22, 1, 0.36, 1] as const;
+
+type HeroService = Service & { hero: NonNullable<Service['hero']> };
 
 /**
- * Decorative hero animation: a phone running an AI-assistant conversation,
- * surrounded by slowly orbiting technology icons and two floating cards
- * (a web dashboard + a model status chip). Purely visual — hidden from
- * assistive tech. Pauses when off-screen and stays static under reduced motion.
+ * "What can I build for you?" — an interactive service explorer for the hero.
+ * Tabs come from services with a `hero` entry in src/data/services.ts.
+ * Auto-advances (with a progress bar) until the visitor hovers or picks a tab;
+ * pauses off-screen and under reduced motion.
  */
 export function HeroVisual() {
-  return (
-    <div aria-hidden="true" className="relative grid size-[30rem] place-items-center select-none">
-      <Orbits />
-      <Phone />
-
-      <FloatCard className="top-10 -right-8" delay={0.9} floatDelay="0s">
-        <div className="flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-medium text-fg">
-          <span className="animate-pulse-dot size-2 rounded-full bg-success" />
-          AI model connected
-        </div>
-      </FloatCard>
-
-      <FloatCard className="bottom-4 -left-16" delay={1.1} floatDelay="2s">
-        <DashboardCard />
-      </FloatCard>
-    </div>
-  );
-}
-
-/* ── Orbit rings ─────────────────────────────────────────────────────────── */
-
-type OrbitIcon = { icon: ComponentType<LucideProps>; angle: number };
-
-const rings: { size: string; radius: string; duration: string; reverse?: boolean; dashed?: boolean; icons: OrbitIcon[] }[] = [
-  {
-    size: 'size-[19rem]',
-    radius: '9.5rem',
-    duration: '48s',
-    icons: [
-      { icon: Bot, angle: 200 },
-      { icon: Zap, angle: 20 },
-    ],
-  },
-  {
-    size: 'size-[24.5rem]',
-    radius: '12.25rem',
-    duration: '70s',
-    reverse: true,
-    dashed: true,
-    icons: [
-      { icon: Smartphone, angle: 140 },
-      { icon: Globe, angle: 320 },
-    ],
-  },
-  {
-    size: 'size-[30rem]',
-    radius: '15rem',
-    duration: '95s',
-    icons: [
-      { icon: BrainCircuit, angle: 250 },
-      { icon: Database, angle: 165 },
-      { icon: Cloud, angle: 70 },
-      { icon: Code, angle: 345 },
-    ],
-  },
-];
-
-function Orbits() {
-  return (
-    <>
-      <div className="absolute size-[17rem] rounded-full bg-[radial-gradient(closest-side,var(--glow),transparent)] blur-2xl" />
-      {rings.map((ring) => (
-        <div
-          key={ring.size}
-          className={cn(
-            'absolute rounded-full border',
-            ring.size,
-            ring.dashed ? 'border-dashed border-border-strong' : 'border-border',
-            ring.reverse ? 'animate-orbit-reverse' : 'animate-orbit',
-          )}
-          style={{ animationDuration: ring.duration }}
-        >
-          {ring.icons.map(({ icon: Icon, angle }) => (
-            <div
-              key={angle}
-              className="absolute top-1/2 left-1/2 size-0"
-              style={{ transform: `rotate(${angle}deg) translateX(${ring.radius}) rotate(${-angle}deg)` }}
-            >
-              {/* Counter-rotate so the icon stays upright while the ring turns. */}
-              <div
-                className={cn('absolute -top-5 -left-5 size-10', ring.reverse ? 'animate-orbit' : 'animate-orbit-reverse')}
-                style={{ animationDuration: ring.duration }}
-              >
-                <div className="glass grid size-10 place-items-center rounded-xl text-accent shadow-[var(--shadow-soft)]">
-                  <Icon className="size-[1.1rem]" strokeWidth={1.75} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ))}
-    </>
-  );
-}
-
-/* ── Phone with AI chat ──────────────────────────────────────────────────── */
-
-type Message = { from: 'user' | 'ai'; text: string; extra?: 'chart' | 'action' };
-
-const conversation: Message[] = [
-  { from: 'user', text: 'How were sales this week?' },
-  { from: 'ai', text: 'Up 18% on last week:', extra: 'chart' },
-  { from: 'user', text: 'Thank our new customers' },
-  { from: 'ai', text: '34 emails ready to send.', extra: 'action' },
-];
-
-/** Timeline: how many messages are visible, whether the AI is "typing", and how long to hold. */
-const frames = [
-  { shown: 0, typing: false, ms: 700 },
-  { shown: 1, typing: false, ms: 650 },
-  { shown: 1, typing: true, ms: 1300 },
-  { shown: 2, typing: false, ms: 2600 },
-  { shown: 3, typing: false, ms: 650 },
-  { shown: 3, typing: true, ms: 1300 },
-  { shown: 4, typing: false, ms: 4200 },
-];
-
-function useConversation() {
+  const items = activeServices.filter((s): s is HeroService => !!s.hero);
+  const [index, setIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [locked, setLocked] = useState(false); // visitor picked a tab → stop auto-play
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: '0px 0px -10% 0px' });
+  const inView = useInView(ref);
   const reduceMotion = useReducedMotion();
-  const [frame, setFrame] = useState(0);
-  const [cycle, setCycle] = useState(0);
+  const baseId = useId();
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const autoplay = !locked && !hovered && inView && !reduceMotion && items.length > 1;
 
   useEffect(() => {
-    if (reduceMotion || !inView) return;
-    const timer = window.setTimeout(() => {
-      if (frame === frames.length - 1) {
-        setFrame(0);
-        setCycle((c) => c + 1);
-      } else {
-        setFrame((f) => f + 1);
-      }
-    }, frames[frame].ms);
+    if (!autoplay) return;
+    const timer = window.setTimeout(() => setIndex((i) => (i + 1) % items.length), ROTATE_MS);
     return () => window.clearTimeout(timer);
-  }, [frame, inView, reduceMotion]);
+  }, [autoplay, index, items.length]);
 
-  const current = reduceMotion ? frames[frames.length - 1] : frames[frame];
-  return { ref, cycle, ...current };
-}
+  if (items.length === 0) return null;
+  const active = items[index];
 
-function Phone() {
-  const { ref, cycle, shown, typing } = useConversation();
+  const select = (i: number, focus = false) => {
+    setIndex(i);
+    setLocked(true);
+    if (focus) tabRefs.current[i]?.focus();
+  };
+
+  const onKeyDown = (event: KeyboardEvent) => {
+    const last = items.length - 1;
+    const map: Record<string, number> = {
+      ArrowRight: index === last ? 0 : index + 1,
+      ArrowLeft: index === 0 ? last : index - 1,
+      Home: 0,
+      End: last,
+    };
+    if (event.key in map) {
+      event.preventDefault();
+      select(map[event.key], true);
+    }
+  };
 
   return (
     <m.div
       ref={ref}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      className="relative z-10 h-[28rem] w-[13.5rem] rounded-[2.5rem] border border-border-strong bg-surface p-[7px] shadow-[0_30px_80px_-20px_var(--glow),var(--shadow-lift)]"
+      transition={{ duration: 0.9, delay: 0.2, ease }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setHovered(true)}
+      onBlurCapture={() => setHovered(false)}
+      className="relative w-[30rem]"
     >
-      <div className="relative flex h-full flex-col overflow-hidden rounded-[2.1rem] bg-bg">
-        {/* Dynamic island */}
-        <div className="absolute top-2 left-1/2 h-[1.15rem] w-[4.5rem] -translate-x-1/2 rounded-full bg-black" />
+      {/* glow */}
+      <div
+        aria-hidden="true"
+        className="absolute -inset-10 -z-10 rounded-full bg-[conic-gradient(from_180deg,var(--primary),var(--accent-2),var(--primary))] opacity-[0.18] blur-3xl"
+      />
 
-        {/* App header */}
-        <div className="flex items-center gap-2 border-b border-border px-3.5 pt-9 pb-2.5">
-          <span className="grid size-7 place-items-center rounded-full bg-[linear-gradient(135deg,var(--primary),var(--accent-2))] text-white">
-            <Sparkles className="size-3.5" />
+      <div className="glass rounded-[1.75rem] p-5 shadow-[0_30px_80px_-24px_var(--glow),var(--shadow-lift)]">
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-semibold text-fg">What can I build for you?</p>
+          <span className="flex items-center gap-1.5 text-xs text-fg-subtle">
+            <span className="size-1.5 rounded-full bg-success" aria-hidden="true" />
+            {locked ? 'Your pick' : 'Tap to explore'}
           </span>
-          <div className="leading-tight">
-            <p className="text-[0.72rem] font-semibold text-fg">AI Assistant</p>
-            <p className="flex items-center gap-1 text-[0.6rem] text-success">
-              <span className="size-1.5 rounded-full bg-success" /> Online
-            </p>
-          </div>
         </div>
 
-        {/* Messages */}
-        <AnimatePresence mode="wait">
-          <m.div
-            key={cycle}
-            exit={{ opacity: 0, transition: { duration: 0.35 } }}
-            className="flex flex-1 flex-col gap-2 overflow-hidden px-3 py-3 text-[0.68rem] leading-snug"
-          >
-            <AnimatePresence>
-              {conversation.slice(0, shown).map((msg, i) => (
-                <Bubble key={i} message={msg} />
-              ))}
-              {typing && <TypingBubble key="typing" />}
-            </AnimatePresence>
-          </m.div>
-        </AnimatePresence>
+        {/* Tabs */}
+        <div role="tablist" aria-label="Services" onKeyDown={onKeyDown} className="mt-3.5 flex gap-1">
+          {items.map((item, i) => {
+            const selected = i === index;
+            return (
+              <button
+                key={item.id}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
+                id={`${baseId}-tab-${i}`}
+                role="tab"
+                type="button"
+                aria-selected={selected}
+                aria-controls={`${baseId}-panel`}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => select(i)}
+                className={cn(
+                  'relative flex h-8 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full border px-2 text-xs font-semibold whitespace-nowrap transition-colors',
+                  selected
+                    ? 'border-transparent bg-fg text-bg'
+                    : 'border-border bg-surface/60 text-fg-muted hover:border-border-strong hover:text-fg',
+                )}
+              >
+                {item.hero.label}
+                {selected && autoplay && (
+                  <m.span
+                    key={`progress-${index}`}
+                    aria-hidden="true"
+                    className="absolute bottom-0 left-0 h-[2px] bg-[linear-gradient(90deg,var(--primary),var(--accent-2))]"
+                    initial={{ width: '0%' }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: ROTATE_MS / 1000, ease: 'linear' }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
 
-        {/* Input */}
-        <div className="m-2.5 mt-0 flex items-center gap-2 rounded-full border border-border bg-surface-2 py-1 pr-1 pl-3 text-[0.65rem] text-fg-subtle">
-          <span className="flex-1">Ask anything…</span>
-          <span className="grid size-6 place-items-center rounded-full bg-[linear-gradient(135deg,var(--primary),var(--accent-2))] text-white">
-            <Send className="size-3" />
-          </span>
+        {/* Panel */}
+        <div
+          id={`${baseId}-panel`}
+          role="tabpanel"
+          aria-labelledby={`${baseId}-tab-${index}`}
+          aria-live={locked ? 'polite' : 'off'}
+          className="mt-4"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <m.div
+              key={active.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.3, ease }}
+            >
+              <div aria-hidden="true" className="relative h-36 overflow-hidden rounded-2xl border border-border bg-surface-2">
+                <div className="bg-grid absolute inset-0 opacity-60" />
+                <Preview kind={active.hero.preview} />
+              </div>
+
+              <h3 className="mt-4 text-lg font-bold">{active.title}</h3>
+              <p className="mt-1 line-clamp-2 min-h-[2.875rem] text-sm leading-relaxed text-fg-muted">{active.summary}</p>
+
+              <ul className="mt-3 grid min-h-[4.4rem] grid-cols-2 content-start gap-x-3 gap-y-1.5">
+                {active.solutions.slice(0, 4).map((item, i) => (
+                  <m.li
+                    key={item}
+                    initial={{ opacity: 0, x: -6 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, delay: 0.1 + i * 0.06 }}
+                    className="flex items-start gap-1.5 text-xs text-fg"
+                  >
+                    <Check className="mt-px size-3.5 shrink-0 text-accent" aria-hidden="true" />
+                    {item}
+                  </m.li>
+                ))}
+              </ul>
+
+              <div className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-4">
+                <StackLogos technologies={active.technologies} />
+                <Link
+                  to={`/contact?service=${active.id}`}
+                  className="group inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-3.5 py-2 text-xs font-semibold text-primary-fg shadow-[0_8px_20px_-8px_var(--glow)] transition-colors hover:bg-primary-hover"
+                >
+                  Start a project like this
+                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+              </div>
+            </m.div>
+          </AnimatePresence>
         </div>
       </div>
     </m.div>
   );
 }
 
-const bubbleMotion = {
-  initial: { opacity: 0, y: 10, scale: 0.96 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  exit: { opacity: 0, transition: { duration: 0.15 } },
-  transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const },
-};
+/* ── Animated previews ───────────────────────────────────────────────────── */
 
-function Bubble({ message }: { message: Message }) {
-  if (message.from === 'user') {
-    return (
-      <m.div {...bubbleMotion} className="max-w-[82%] self-end rounded-2xl rounded-br-md bg-primary px-3 py-2 text-white">
-        {message.text}
-      </m.div>
-    );
+function Preview({ kind }: { kind: ServicePreviewKind }) {
+  switch (kind) {
+    case 'ai-mobile':
+      return <AiMobilePreview />;
+    case 'ai-web':
+      return <AiWebPreview />;
+    case 'mobile':
+      return <MobilePreview />;
+    case 'web':
+      return <WebPreview />;
+    case 'automation':
+      return <AutomationPreview />;
   }
-  return (
-    <m.div
-      {...bubbleMotion}
-      className="max-w-[90%] self-start rounded-2xl rounded-bl-md border border-border bg-surface-2 px-3 py-2 text-fg"
-    >
-      {message.text}
-      {message.extra === 'chart' && <MiniChart />}
-      {message.extra === 'action' && (
-        <div className="mt-2 flex gap-1.5">
-          <span className="rounded-full bg-[linear-gradient(135deg,var(--primary),var(--accent-2))] px-2.5 py-1 text-[0.6rem] font-semibold text-white">
-            Send all
-          </span>
-          <span className="rounded-full border border-border-strong px-2.5 py-1 text-[0.6rem] font-medium text-fg-muted">Preview</span>
-        </div>
-      )}
-    </m.div>
-  );
 }
 
-const bars = [38, 52, 44, 63, 58, 80, 96];
+const pop = (delay: number) => ({
+  initial: { opacity: 0, y: 8, scale: 0.95 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  transition: { duration: 0.4, delay, ease },
+});
 
-function MiniChart() {
+const gradient = 'bg-[linear-gradient(135deg,var(--primary),var(--accent-2))]';
+
+function PhoneShell({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="mt-1.5 flex h-10 items-end gap-1 rounded-lg bg-bg/60 px-2 pt-2 pb-1.5">
-      {bars.map((h, i) => (
-        <m.span
-          key={i}
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 0.5, delay: 0.15 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-          style={{ height: `${h}%` }}
-          className={cn(
-            'flex-1 origin-bottom rounded-sm',
-            i === bars.length - 1 ? 'bg-[linear-gradient(to_top,var(--primary),var(--accent-2))]' : 'bg-accent/35',
-          )}
-        />
-      ))}
+    <div
+      className={cn(
+        'absolute top-4 w-32 rounded-t-[1.4rem] border border-b-0 border-border-strong bg-surface p-1.5 pb-0 shadow-[var(--shadow-lift)]',
+        className,
+      )}
+    >
+      <div className="relative h-[8.5rem] overflow-hidden rounded-t-[1.05rem] bg-bg px-2 pt-5">
+        <div className="absolute top-1.5 left-1/2 h-2.5 w-10 -translate-x-1/2 rounded-full bg-black" />
+        {children}
+      </div>
     </div>
   );
 }
 
-function TypingBubble() {
+function BrowserShell({ children, url }: { children: ReactNode; url: string }) {
   return (
-    <m.div {...bubbleMotion} className="flex gap-1 self-start rounded-2xl rounded-bl-md border border-border bg-surface-2 px-3 py-2.5">
-      {[0, 150, 300].map((delay) => (
-        <span key={delay} className="animate-typing size-1.5 rounded-full bg-fg-subtle" style={{ animationDelay: `${delay}ms` }} />
-      ))}
-    </m.div>
+    <div className="absolute inset-x-6 top-4 bottom-0 overflow-hidden rounded-t-xl border border-b-0 border-border-strong bg-surface shadow-[var(--shadow-lift)]">
+      <div className="flex items-center gap-1 border-b border-border px-2.5 py-1.5">
+        <span className="size-1.5 rounded-full bg-border-strong" />
+        <span className="size-1.5 rounded-full bg-border-strong" />
+        <span className="size-1.5 rounded-full bg-border-strong" />
+        <span className="ml-2 rounded-full bg-surface-2 px-2 py-px text-[0.55rem] text-fg-subtle">{url}</span>
+      </div>
+      {children}
+    </div>
   );
 }
 
-/* ── Floating cards ──────────────────────────────────────────────────────── */
-
-function FloatCard({
-  children,
-  className,
-  delay,
-  floatDelay,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay: number;
-  floatDelay: string;
-}) {
+function AiMobilePreview() {
   return (
-    <m.div
-      initial={{ opacity: 0, y: 14, scale: 0.94 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={cn('absolute z-20', className)}
-    >
-      <div style={{ animationDelay: floatDelay }} className="glass animate-float rounded-2xl shadow-[var(--shadow-lift)]">
-        {children}
-      </div>
-    </m.div>
-  );
-}
-
-function DashboardCard() {
-  return (
-    <div className="w-[12.5rem] p-3">
-      <div className="flex items-center gap-1">
-        <span className="size-1.5 rounded-full bg-border-strong" />
-        <span className="size-1.5 rounded-full bg-border-strong" />
-        <span className="size-1.5 rounded-full bg-border-strong" />
-        <span className="ml-1.5 flex items-center gap-1 text-[0.6rem] font-medium text-fg-muted">
-          <Globe className="size-2.5" /> dashboard.app
-        </span>
-      </div>
-      <div className="mt-2.5 flex items-end justify-between">
-        <div>
-          <p className="text-[0.6rem] text-fg-subtle">Active users</p>
-          <p className="font-display text-base font-bold text-fg">12.4k</p>
+    <>
+      <PhoneShell className="left-1/2 -translate-x-1/2">
+        <div className="flex flex-col gap-1.5 text-[0.55rem] leading-tight">
+          <m.div {...pop(0.15)} className="max-w-[80%] self-end rounded-xl rounded-br-sm bg-primary px-2 py-1 text-white">
+            Plan my week
+          </m.div>
+          <m.div {...pop(0.6)} className="flex gap-0.5 self-start rounded-xl rounded-bl-sm border border-border bg-surface-2 px-2 py-1.5">
+            {[0, 150, 300].map((d) => (
+              <span key={d} className="animate-typing size-1 rounded-full bg-fg-subtle" style={{ animationDelay: `${d}ms` }} />
+            ))}
+          </m.div>
+          <m.div {...pop(1.3)} className="max-w-[90%] self-start rounded-xl rounded-bl-sm border border-border bg-surface-2 px-2 py-1 text-fg">
+            Done — 3 meetings and 2 focus blocks added.
+          </m.div>
         </div>
-        <span className="rounded-full bg-success/10 px-1.5 py-0.5 text-[0.6rem] font-semibold text-success">+18%</span>
+      </PhoneShell>
+      <m.span
+        {...pop(1.6)}
+        className={cn(
+          'absolute top-8 right-8 flex items-center gap-1 rounded-full px-2 py-1 text-[0.6rem] font-semibold text-white shadow-[var(--shadow-lift)]',
+          gradient,
+        )}
+      >
+        <Sparkles className="size-3" /> AI assistant
+      </m.span>
+    </>
+  );
+}
+
+function AiWebPreview() {
+  return (
+    <BrowserShell url="app.yourproduct.com">
+      <div className="flex h-full">
+        <div className="flex-1 space-y-1.5 p-2.5">
+          <div className="h-1.5 w-1/2 rounded-full bg-border-strong" />
+          <div className="h-1.5 w-4/5 rounded-full bg-border" />
+          <div className="grid grid-cols-3 gap-1.5 pt-1">
+            <div className="h-9 rounded-md bg-accent-soft" />
+            <div className="h-9 rounded-md bg-surface-2 ring-1 ring-border" />
+            <div className="h-9 rounded-md bg-surface-2 ring-1 ring-border" />
+          </div>
+        </div>
+        <m.div
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2, ease }}
+          className="flex w-[44%] flex-col gap-1 border-l border-border bg-surface-2 p-2 text-[0.55rem] leading-tight"
+        >
+          <span className="flex items-center gap-1 font-semibold text-fg">
+            <Bot className="size-3 text-accent" /> Copilot
+          </span>
+          <m.div {...pop(0.7)} className="self-end rounded-lg bg-primary px-1.5 py-1 text-white">
+            Summarise this report
+          </m.div>
+          <m.div {...pop(1.3)} className="rounded-lg border border-border bg-surface px-1.5 py-1 text-fg">
+            Revenue +18%, churn down 4%. Top risk: late invoices.
+          </m.div>
+        </m.div>
       </div>
-      <svg viewBox="0 0 176 44" className="mt-1.5 h-11 w-full overflow-visible">
-        <defs>
-          <linearGradient id="hero-spark" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="var(--primary)" />
-            <stop offset="1" stopColor="var(--accent-2)" />
-          </linearGradient>
-          <linearGradient id="hero-spark-fill" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0" stopColor="var(--accent-2)" stopOpacity="0.22" />
-            <stop offset="1" stopColor="var(--accent-2)" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path d="M0 36 L22 31 L44 33 L66 24 L88 27 L110 17 L132 20 L154 9 L176 4 L176 44 L0 44 Z" fill="url(#hero-spark-fill)" />
-        <m.path
-          d="M0 36 L22 31 L44 33 L66 24 L88 27 L110 17 L132 20 L154 9 L176 4"
-          fill="none"
-          stroke="url(#hero-spark)"
-          strokeWidth="2.25"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.8, delay: 1.3, ease: 'easeInOut', repeat: Infinity, repeatDelay: 5 }}
+    </BrowserShell>
+  );
+}
+
+function MobilePreview() {
+  return (
+    <>
+      <PhoneShell className="left-[9%]">
+        <m.div {...pop(0.1)} className={cn('h-8 rounded-lg', gradient)} />
+        <div className="mt-1.5 space-y-1">
+          {[0, 1, 2].map((i) => (
+            <m.div key={i} {...pop(0.3 + i * 0.15)} className="flex items-center gap-1.5 rounded-md bg-surface-2 p-1 ring-1 ring-border">
+              <span className="size-3.5 rounded bg-accent-soft" />
+              <span className="h-1 flex-1 rounded-full bg-border-strong" />
+            </m.div>
+          ))}
+        </div>
+      </PhoneShell>
+      <PhoneShell className="top-7 left-[35%] rotate-6">
+        <div className="grid grid-cols-2 gap-1">
+          {[0, 1, 2, 3].map((i) => (
+            <m.div
+              key={i}
+              {...pop(0.5 + i * 0.1)}
+              className={cn('h-10 rounded-md', i === 0 ? gradient : 'bg-surface-2 ring-1 ring-border')}
+            />
+          ))}
+        </div>
+      </PhoneShell>
+      <div className="absolute top-4 right-4 flex flex-col items-start gap-1.5">
+        {['Flutter', 'React Native', 'iOS', 'Android'].map((tech, i) => (
+          <m.span
+            key={tech}
+            {...pop(0.6 + i * 0.12)}
+            className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-2 py-1 text-[0.6rem] font-semibold whitespace-nowrap text-fg shadow-[var(--shadow-soft)]"
+          >
+            <TechLogo name={tech} className="size-3" />
+            {tech}
+          </m.span>
+        ))}
+      </div>
+    </>
+  );
+}
+
+const webBars = [40, 62, 48, 75, 58, 88, 70, 96];
+
+function WebPreview() {
+  const card = 'rounded-xl border border-border bg-surface p-2 shadow-[var(--shadow-soft)]';
+  return (
+    <>
+      {/* Frontend */}
+      <div className="absolute top-4 bottom-0 left-4 w-[57%] overflow-hidden rounded-t-xl border border-b-0 border-border-strong bg-surface shadow-[var(--shadow-lift)]">
+        <div className="flex items-center gap-1 border-b border-border px-2.5 py-1.5">
+          <span className="size-1.5 rounded-full bg-border-strong" />
+          <span className="size-1.5 rounded-full bg-border-strong" />
+          <span className="size-1.5 rounded-full bg-border-strong" />
+          <span className="ml-2 flex items-center gap-1 rounded-full bg-surface-2 px-2 py-0.5 text-[0.55rem] font-semibold text-fg-muted">
+            <TechLogo name="React" className="size-2.5" />
+            <TechLogo name="Next.js" className="size-2.5" />
+            <TechLogo name="Vue.js" className="size-2.5" />
+            Frontend
+          </span>
+        </div>
+        <div className="space-y-1.5 p-2">
+          <div className="grid grid-cols-2 gap-1.5">
+            {[
+              ['Revenue', '$48k'],
+              ['Growth', '+18%'],
+            ].map(([label, value], i) => (
+              <m.div key={label} {...pop(0.1 + i * 0.1)} className="rounded-md bg-surface-2 px-1.5 py-1 ring-1 ring-border">
+                <p className="text-[0.5rem] text-fg-subtle">{label}</p>
+                <p className="text-[0.7rem] font-bold text-fg">{value}</p>
+              </m.div>
+            ))}
+          </div>
+          <div className="flex h-9 items-end gap-1 rounded-md bg-surface-2 p-1.5 ring-1 ring-border">
+            {webBars.map((h, i) => (
+              <m.span
+                key={i}
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.06, ease }}
+                style={{ height: `${h}%` }}
+                className={cn('flex-1 origin-bottom rounded-sm', i === webBars.length - 1 ? gradient : 'bg-accent/30')}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* Data flowing between frontend and API */}
+      <div className="absolute top-[2.6rem] right-[calc(31%+0.75rem)] left-[calc(57%+1.25rem)] h-px bg-border-strong">
+        <m.span
+          className={cn('absolute -top-[3px] size-[7px] rounded-full shadow-[0_0_10px_var(--accent)]', gradient)}
+          animate={{ left: ['0%', '100%', '0%'] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
         />
-      </svg>
+      </div>
+
+      {/* Backend */}
+      <div className="absolute top-4 right-4 flex w-[31%] flex-col gap-2">
+        <m.div {...pop(0.4)} className={card}>
+          <p className="text-[0.55rem] font-semibold text-fg-subtle">API</p>
+          <div className="mt-1 flex gap-1.5">
+            {['Node.js', 'NestJS', 'Python', 'Go'].map((t) => (
+              <TechLogo key={t} name={t} className="size-3.5" />
+            ))}
+          </div>
+        </m.div>
+        <m.div {...pop(0.6)} className={card}>
+          <p className="text-[0.55rem] font-semibold text-fg-subtle">Database</p>
+          <div className="mt-1 flex gap-1.5">
+            {['PostgreSQL', 'MongoDB', 'Firebase'].map((t) => (
+              <TechLogo key={t} name={t} className="size-3.5" />
+            ))}
+          </div>
+        </m.div>
+      </div>
+    </>
+  );
+}
+
+function AutomationPreview() {
+  const node = 'flex flex-col items-center gap-1 text-[0.55rem] font-semibold text-fg';
+  const box = 'grid size-10 place-items-center rounded-xl border border-border-strong bg-surface shadow-[var(--shadow-soft)]';
+  const result =
+    'flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2 py-1 text-[0.55rem] font-semibold text-fg shadow-[var(--shadow-soft)]';
+  return (
+    <div className="absolute inset-0 flex items-center justify-center px-5">
+      <m.div {...pop(0.1)} className={node}>
+        <span className={box}>
+          <ShoppingCart className="size-4 text-fg-muted" />
+        </span>
+        New order
+      </m.div>
+      <Connector delay={0.4} />
+      <m.div {...pop(0.5)} className={node}>
+        <span className={cn(box, 'size-12 border-transparent text-white', gradient)}>
+          <Sparkles className="size-5" />
+        </span>
+        AI agent
+      </m.div>
+      <Connector delay={0.9} />
+      <div className="flex flex-col gap-2">
+        <m.div {...pop(1.0)} className={result}>
+          <Mail className="size-3 text-accent" /> Email sent
+        </m.div>
+        <m.div {...pop(1.15)} className={result}>
+          <Database className="size-3 text-accent" /> CRM updated
+        </m.div>
+      </div>
+    </div>
+  );
+}
+
+/** Line between workflow nodes with a pulse of "data" travelling along it. */
+function Connector({ delay }: { delay: number }) {
+  return (
+    <div className="relative mx-2 mb-4 h-px w-10 bg-border-strong">
+      <m.span
+        className={cn('absolute -top-[3px] size-[7px] rounded-full shadow-[0_0_10px_var(--accent)]', gradient)}
+        initial={{ left: '0%', opacity: 0 }}
+        animate={{ left: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 1.2, delay, repeat: Infinity, repeatDelay: 0.6, ease: 'easeInOut' }}
+      />
+    </div>
+  );
+}
+
+/** Overlapping brand logos for the selected service's stack, e.g. (Flutter)(React)(Swift) +2 */
+function StackLogos({ technologies }: { technologies: string[] }) {
+  const withLogo = technologies.filter(hasTechLogo).slice(0, 5);
+  const extra = technologies.length - withLogo.length;
+  return (
+    <div className="flex min-w-0 items-center gap-2">
+      <ul aria-label="Technologies" className="flex -space-x-1.5">
+        {withLogo.map((tech, i) => (
+          <m.li
+            key={tech}
+            title={tech}
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.15 + i * 0.05 }}
+            className="grid size-7 place-items-center rounded-full border border-border bg-surface text-fg shadow-[var(--shadow-soft)]"
+          >
+            <TechLogo name={tech} className="size-3.5" />
+            <span className="sr-only">{tech}</span>
+          </m.li>
+        ))}
+      </ul>
+      {extra > 0 && <span className="text-[0.7rem] font-medium text-fg-subtle">+{extra} more</span>}
     </div>
   );
 }

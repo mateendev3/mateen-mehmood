@@ -1,5 +1,5 @@
 import { skills } from '../../data/skills';
-import { Chip } from '../ui/Chip';
+import { TechChip } from '../ui/TechLogo';
 import { Icon } from '../ui/Icon';
 import { Reveal } from '../ui/Reveal';
 
@@ -20,7 +20,7 @@ export function SkillsGrid() {
             <ul className="mt-6 flex flex-wrap gap-2">
               {group.items.map((item) => (
                 <li key={item}>
-                  <Chip className="px-3.5 py-1.5 text-sm">{item}</Chip>
+                  <TechChip name={item} />
                 </li>
               ))}
             </ul>

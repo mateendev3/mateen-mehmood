@@ -7,6 +7,7 @@ import { cn } from '../../lib/utils';
 import { Button } from '../ui/Button';
 import { SocialLinks } from '../ui/SocialLinks';
 import { HeroVisual } from './HeroVisual';
+import { TechLogo, hasTechLogo } from '../ui/TechLogo';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -155,14 +156,18 @@ function RotatingWords({ words }: { words: string[] }) {
 function TechMarquee({ items }: { items: string[] }) {
   if (items.length === 0) return null;
   const row = (hidden: boolean) => (
-    <ul aria-hidden={hidden || undefined} className="flex shrink-0 items-center gap-10 pr-10">
+    <ul aria-hidden={hidden || undefined} className="flex shrink-0 items-center gap-11 pr-11">
       {items.map((item) => (
         <li
           key={item}
-          className="flex items-center gap-10 font-display text-[0.9375rem] font-semibold whitespace-nowrap text-fg-subtle"
+          className="flex items-center gap-2.5 font-display text-[0.9375rem] font-semibold whitespace-nowrap text-fg-subtle"
         >
+          {hasTechLogo(item) ? (
+            <TechLogo name={item} className="size-[1.1rem]" />
+          ) : (
+            <Sparkles className="size-4 text-accent" aria-hidden="true" />
+          )}
           {item}
-          <Sparkles className="size-3 text-accent/60" aria-hidden="true" />
         </li>
       ))}
     </ul>

@@ -6,7 +6,7 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { projectsForCategories } from '../lib/content';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Button } from '../components/ui/Button';
-import { Chip } from '../components/ui/Chip';
+import { TechChip } from '../components/ui/TechLogo';
 import { Icon } from '../components/ui/Icon';
 import { Reveal } from '../components/ui/Reveal';
 import { FinalCta } from '../components/home/FinalCta';
@@ -108,7 +108,7 @@ export default function Services() {
                       <ul className="mt-4 flex flex-wrap gap-2">
                         {service.technologies.map((tech) => (
                           <li key={tech}>
-                            <Chip>{tech}</Chip>
+                            <TechChip name={tech} size="sm" />
                           </li>
                         ))}
                       </ul>

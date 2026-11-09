@@ -122,7 +122,14 @@ export interface Service {
   relatedCategories?: ProjectCategory[];
   /** Set false to hide a service without deleting it. */
   enabled: boolean;
+  /**
+   * Show this service as a tab in the homepage hero explorer.
+   * `label` is the short tab name; `preview` picks the animated illustration.
+   */
+  hero?: { label: string; preview: ServicePreviewKind };
 }
+
+export type ServicePreviewKind = 'ai-mobile' | 'ai-web' | 'mobile' | 'web' | 'automation';
 
 export const PROJECT_CATEGORIES = [
   'Mobile Apps',
