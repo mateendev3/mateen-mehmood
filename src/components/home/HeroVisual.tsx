@@ -198,6 +198,8 @@ function Preview({ kind }: { kind: ServicePreviewKind }) {
       return <WebPreview />;
     case 'automation':
       return <AutomationPreview />;
+    case 'business':
+      return <BusinessPreview />;
   }
 }
 
@@ -419,6 +421,53 @@ function WebPreview() {
         </m.div>
       </div>
     </>
+  );
+}
+
+const orders = [
+  { name: 'Acme Corp', amount: '$4,200', status: 'Paid', tone: 'bg-success/15 text-success' },
+  { name: 'Northwind', amount: '$1,850', status: 'Pending', tone: 'bg-amber-500/15 text-amber-600 dark:text-amber-400' },
+  { name: 'Globex Ltd', amount: '$7,940', status: 'Shipped', tone: 'bg-accent-soft text-accent' },
+];
+
+/** Mini ERP / CRM: sidebar navigation + orders table with statuses popping in. */
+function BusinessPreview() {
+  return (
+    <BrowserShell url="erp.yourcompany.com">
+      <div className="flex h-full text-[0.55rem]">
+        <div className="w-[26%] space-y-1 border-r border-border bg-surface-2 p-2">
+          {['Dashboard', 'Orders', 'Customers', 'Reports'].map((item, i) => (
+            <div
+              key={item}
+              className={cn('rounded-md px-1.5 py-1 font-medium', i === 1 ? 'bg-accent-soft text-accent' : 'text-fg-subtle')}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+        <div className="flex-1 p-2">
+          <div className="mb-1.5 flex items-center justify-between">
+            <span className="font-semibold text-fg">Orders</span>
+            <m.span {...pop(0.2)} className={cn('rounded-full px-1.5 py-0.5 font-semibold text-white', gradient)}>
+              + New
+            </m.span>
+          </div>
+          <div className="space-y-1">
+            {orders.map((o, i) => (
+              <m.div
+                key={o.name}
+                {...pop(0.3 + i * 0.15)}
+                className="flex items-center gap-2 rounded-md bg-surface-2 px-1.5 py-1 ring-1 ring-border"
+              >
+                <span className="flex-1 font-medium text-fg">{o.name}</span>
+                <span className="text-fg-muted">{o.amount}</span>
+                <span className={cn('w-12 rounded-full py-px text-center font-semibold', o.tone)}>{o.status}</span>
+              </m.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </BrowserShell>
   );
 }
 

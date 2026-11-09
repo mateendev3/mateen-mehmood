@@ -129,7 +129,7 @@ export interface Service {
   hero?: { label: string; preview: ServicePreviewKind };
 }
 
-export type ServicePreviewKind = 'ai-mobile' | 'ai-web' | 'mobile' | 'web' | 'automation';
+export type ServicePreviewKind = 'ai-mobile' | 'ai-web' | 'mobile' | 'web' | 'automation' | 'business';
 
 export const PROJECT_CATEGORIES = [
   'Mobile Apps',

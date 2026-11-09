@@ -22,7 +22,7 @@ export const pageMeta: Record<'home' | 'services' | 'projects' | 'about' | 'cont
     path: '/services',
     title: `Services — ${profile.name}`,
     description:
-      'AI-powered mobile and web apps, mobile app development, web development, AI integration and ongoing support — services I offer to freelance clients.',
+      'Mobile app development, web development, AI development & integration, custom software, API integrations and ongoing support — services I offer to freelance clients.',
   },
   projects: {
     path: '/projects',

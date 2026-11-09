@@ -13,7 +13,7 @@ export function ServicesPreview() {
         id="services-title"
         eyebrow="Services"
         title="How I can help"
-        description="AI-powered apps, mobile and web development, and support for products already live — here's what you can hire me for."
+        description="Mobile, web, AI and custom software — plus the integrations and support that keep products running."
         action={
           <Button to="/services" variant="secondary">
             View All Services <ArrowRight className="size-4" aria-hidden="true" />
