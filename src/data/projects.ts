@@ -108,7 +108,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 6,
+    order: 8,
   },
   {
     slug: 'dream',
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 5,
+    order: 7,
   },
   {
     slug: 'braiding-nairobi',
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 4,
+    order: 5,
   },
   {
     slug: 'talli',
@@ -292,7 +292,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 3,
+    order: 4,
   },
   {
     slug: 'rox',
@@ -360,7 +360,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 2,
+    order: 3,
   },
   {
     slug: 'layla',
@@ -423,5 +423,130 @@ export const projects: Project[] = [
     featured: true,
     published: true,
     order: 1,
+  },
+  {
+    slug: 'mysalam',
+    title: 'mySalam',
+    subtitle: 'The self-care app for Salam mobile customers in Saudi Arabia — buy a line, activate, track and recharge.',
+    summary:
+      'Telecom self-care app for Salam: buy a SIM or eSIM line, activate it in minutes, track data and balance, and recharge instantly — used by 1M+ customers.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    coverImage: '/images/projects/mysalam/cover.jpg',
+    coverAlt: 'mySalam app screens: buy a line, account balance and recharge',
+    client: 'Salam (Integrated Telecom Company)',
+    overview:
+      'mySalam is the official self-care app for Salam mobile customers in Saudi Arabia. It puts the whole customer journey in one place — from choosing and buying a line to activating the SIM, keeping an eye on usage and recharging.\n\nNew customers can become part of the Salam world in under two minutes, while existing customers check their balance and data consumption, plan their usage and top up from their phone wallet with any amount they choose.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Buy a line in-app',
+        description: 'Browse prepaid plans with data, voice, SMS and social bundles, and order a SIM or eSIM.',
+      },
+      {
+        title: 'Fast SIM activation',
+        description: 'Activate a new SIM with its ICCID number — onboarding in under two minutes.',
+      },
+      {
+        title: 'Balance & usage tracking',
+        description: 'See your active plan, remaining local and social data, expiry date and balance at a glance.',
+      },
+      {
+        title: 'Instant recharge',
+        description: 'Top up with predefined packages or any custom amount, paid from your phone wallet.',
+      },
+      {
+        title: 'Device offers',
+        description: 'Discover and buy the latest smartphones, such as new iPhones, directly in the app.',
+      },
+      {
+        title: 'Account management',
+        description: 'Secure login, quick actions and profile management for every Salam line.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/mysalam/screen-1.jpg', alt: 'Log in to your Salam account', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mysalam/screen-2.jpg', alt: 'Buy a new line with a prepaid plan', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mysalam/screen-3.jpg', alt: 'Activate your SIM card', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mysalam/screen-4.jpg', alt: 'Check your balance and data usage', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mysalam/screen-5.jpg', alt: 'Recharge your line', orientation: 'portrait', frame: false },
+    ],
+    results: [
+      '1M+ downloads on Google Play',
+      '4.4★ from 25,000+ ratings on the App Store',
+      '57K+ reviews on Google Play',
+      'Live on iOS and Android since 2022, with frequent releases',
+    ],
+    links: {
+      appStore: 'https://apps.apple.com/sa/app/mysalam/id1583935151',
+      playStore: 'https://play.google.com/store/apps/details?id=com.salam.app.android',
+    },
+    featured: true,
+    published: true,
+    order: 6,
+  },
+  {
+    slug: 'etgahwa',
+    title: 'Etgahwa',
+    subtitle: 'Coffee is better when it’s shared — a coffee wallet and gifting app for cafés across Saudi Arabia.',
+    summary:
+      'A coffee wallet and gifting app: top up “Beans”, earn bonus Beans, pay at partner cafés by QR code and send coffee to friends in seconds.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    coverImage: '/images/projects/etgahwa/cover.jpg',
+    coverAlt: 'Etgahwa app screens: onboarding, Beans wallet and coffee packages',
+    client: 'Madarat Communications',
+    overview:
+      'Etgahwa gives people a new way to enjoy coffee — whether they’re buying one for themselves or sending one to someone they care about.\n\nUsers top up a balance of “Beans”, get bonus Beans on eligible packages and spend them at participating cafés across Saudi Arabia by scanning a QR code. When someone deserves a coffee, they simply send them Beans and let them choose where to enjoy it.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Beans wallet',
+        description: 'A coffee balance showing total, gifted, bonus and purchased Beans — and how many coffees they’re worth.',
+      },
+      {
+        title: 'Top-up packages',
+        description: 'Choose a package and get bonus Beans on eligible top-ups.',
+      },
+      {
+        title: 'Send coffee as a gift',
+        description: 'Send Beans to anyone in seconds and let them pick the café.',
+      },
+      {
+        title: 'QR redemption at cafés',
+        description: 'Scan the barista’s QR code to pay with Beans at participating cafés.',
+      },
+      {
+        title: 'Activity & stats',
+        description: 'Track gifts, coffees and top-ups, plus visits and cafés explored.',
+      },
+      {
+        title: 'Simple onboarding',
+        description: 'Sign up with a mobile number or email, with English and Arabic support.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/etgahwa/screen-1.jpg', alt: 'Home screen with Beans balance, top up and redeem', orientation: 'portrait' },
+      { src: '/images/projects/etgahwa/screen-2.jpg', alt: 'Onboarding: send coffee to anyone in seconds', orientation: 'portrait' },
+      { src: '/images/projects/etgahwa/screen-3.jpg', alt: 'Profile with coffees received and sent', orientation: 'portrait' },
+      { src: '/images/projects/etgahwa/screen-4.jpg', alt: 'Scan a QR code to redeem Beans', orientation: 'portrait' },
+      { src: '/images/projects/etgahwa/screen-5.jpg', alt: 'Choose a Beans top-up package', orientation: 'portrait' },
+      { src: '/images/projects/etgahwa/screen-6.jpg', alt: 'Wallet activity with gifts and coffees', orientation: 'portrait' },
+    ],
+    results: ['Launched on iOS and Android in October 2026'],
+    links: {
+      appStore: 'https://apps.apple.com/sa/app/etgahwa/id6809803732',
+      playStore: 'https://play.google.com/store/apps/details?id=com.madarat.etgahwa',
+      website: 'https://etgahwa.com/',
+    },
+    featured: false,
+    published: true,
+    order: 2,
   },
 ];
