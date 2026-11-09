@@ -605,6 +605,7 @@ export const projects: Project[] = [
     results: ['1M+ downloads on Google Play', '24K+ reviews on Google Play', 'Live on Android with regular updates'],
     links: {
       playStore: 'https://play.google.com/store/apps/details?id=com.selfcare.link',
+      website: 'https://sudani.sd/en/',
     },
     featured: false,
     published: true,
