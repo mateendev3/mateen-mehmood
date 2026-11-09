@@ -202,7 +202,7 @@ export const profile: Profile = {
     formspreeId: '',
     // Contact form delivery (first one set wins): Web3Forms → Formspree → FormSubmit → email app.
     // Get a free Web3Forms key at https://web3forms.com (it is emailed to you) and paste it here.
-    web3formsKey: '',
+    web3formsKey: '989eab70-9428-40ef-96ce-4206e4c15292',
     formsubmit: 'mateendev3@gmail.com',
     // Optional, e.g. 'I usually reply within 1–2 business days.' Leave empty to hide.
     responseTime: '',
