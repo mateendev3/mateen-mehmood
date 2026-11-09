@@ -81,7 +81,7 @@ export function staticSeo({ siteUrl }: Options): Plugin {
 
 function renderHead(page: PageMeta, siteUrl: string, isHome: boolean, noindex = false) {
   const url = absoluteUrl(siteUrl, canonicalPath(page.path));
-  const imagePath = page.image || profile.photo;
+  const imagePath = page.image || profile.ogImage || profile.photo;
   const image = imagePath ? absoluteUrl(siteUrl, imagePath) : '';
   const tags = [
     `<title>${escape(page.title)}</title>`,

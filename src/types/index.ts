@@ -69,6 +69,8 @@ export interface Profile {
   /** Path inside /public, e.g. "/images/profile/mateen.jpg". Empty = monogram fallback. */
   photo?: string;
   photoAlt?: string;
+  /** Default social-share image (1200×630) in /public, used when a page has no image of its own. */
+  ogImage?: string;
   /** Set to null to hide the availability badge entirely. Only show it while it is accurate. */
   availability: { status: AvailabilityStatus; label: string } | null;
   /** Only URLs that exist. Empty `url` values are ignored. */
@@ -90,6 +92,8 @@ export interface Profile {
     summary: string;
     /** Paragraphs for the About page "My journey" section. */
     journey: string[];
+    /** Track-record numbers for the About card. The live-apps count is added automatically from projects.ts. */
+    highlights: Stat[];
     strengths: { title: string; description: string; icon: IconName }[];
     approach: { title: string; description: string; icon: IconName }[];
   };
@@ -193,6 +197,8 @@ export interface Project {
   /** Optional client / company name — only if you're allowed to name them. */
   client?: string;
 
+  /** Square app icon (shown in the About page "Apps I've worked on" row). */
+  icon?: string;
   /** Card image (16:10 works best). Leave empty to use the built-in device illustration. */
   coverImage?: string;
   coverAlt?: string;

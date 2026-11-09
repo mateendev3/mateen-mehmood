@@ -22,8 +22,10 @@ export const profile: Profile = {
   location: 'Islamabad, Pakistan',
   timezone: 'PKT (UTC+5)',
 
-  // Square image in public/images/profile/. Replace with a high-resolution photo (800×800+) when you have one.
-  photo: '/images/profile/mateen.jpg',
+  // Optional: a professional square headshot (800×800+) in public/images/profile/, e.g. '/images/profile/mateen.jpg'.
+  // When set it appears as the avatar on the About card. Leave empty to use the monogram.
+  photo: '',
+  ogImage: '/og-image.jpg',
   photoAlt: 'Portrait of Mateen Mehmood',
 
   // Only enable while accurate, e.g. { status: 'available', label: 'Available for new projects' }
@@ -83,6 +85,12 @@ export const profile: Profile = {
     headline: 'Turning ideas into intelligent, reliable products.',
     summary:
       "I'm Mateen, an AI, mobile and web developer with ten years of experience building AI-powered apps, mobile apps and web platforms. I focus on software that is practical, reliable and easy to use — turning complex requirements into intuitive products and helping clients improve them through thoughtful engineering.",
+    // Verified from the App Store / Google Play listings of the apps in projects.ts.
+    highlights: [
+      { value: '10 yrs', label: 'Building software' },
+      { value: '12M+', label: 'Downloads across apps I’ve worked on' },
+      { value: '5', label: 'Countries — KSA, Pakistan, Sudan, Kenya, USA' },
+    ],
     journey: [
       "Over the past ten years I've built software across the whole product: native Android and cross-platform Flutter apps for iOS and Android, web platforms, and the backend services that power them with Node.js, Go and Firebase.",
       "More recently, I've been helping clients put AI to practical use — integrating large language models, building assistants and chatbots, and automating repetitive workflows so teams can focus on what matters.",

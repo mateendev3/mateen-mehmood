@@ -54,6 +54,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used, e.g. ['Flutter', 'Dart', 'Firebase', 'Stripe']
     technologies: [],
+    icon: '/images/projects/jeras/icon.jpg',
     coverImage: '/images/projects/jeras/cover.jpg',
     coverAlt: 'Jeras app screens: home, course catalogue and checkout',
     overview:
@@ -120,6 +121,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used, e.g. ['Flutter', 'Dart', 'Firebase', 'Stripe']
     technologies: [],
+    icon: '/images/projects/dream/icon.jpg',
     coverImage: '/images/projects/dream/cover.jpg',
     coverAlt: 'Dream app screens: consultant profile, home and incoming call',
     overview:
@@ -187,6 +189,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
+    icon: '/images/projects/braiding-nairobi/icon.jpg',
     coverImage: '/images/projects/braiding-nairobi/cover.jpg',
     coverAlt: 'Braiding Nairobi app screens: client home, salon profile and chat',
     overview:
@@ -246,6 +249,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
+    icon: '/images/projects/talli/icon.jpg',
     coverImage: '/images/projects/talli/cover.jpg',
     coverAlt: 'Talli app screens: profile stats, versus profile and game submission',
     overview:
@@ -304,6 +308,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
+    icon: '/images/projects/rox/icon.jpg',
     coverImage: '/images/projects/rox/cover.jpg',
     coverAlt: 'ROX app screens: package selection, home and perks',
     client: 'Jazz (Pakistan Mobile Communications Ltd)',
@@ -372,6 +377,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
+    icon: '/images/projects/layla/icon.jpg',
     coverImage: '/images/projects/layla/cover.jpg',
     coverAlt: 'Layla Eco app screens: sleep score, property summary and presence alerts',
     overview:
@@ -434,6 +440,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
+    icon: '/images/projects/mysalam/icon.jpg',
     coverImage: '/images/projects/mysalam/cover.jpg',
     coverAlt: 'mySalam app screens: buy a line, account balance and recharge',
     client: 'Salam (Integrated Telecom Company)',
@@ -498,6 +505,7 @@ export const projects: Project[] = [
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
+    icon: '/images/projects/etgahwa/icon.jpg',
     coverImage: '/images/projects/etgahwa/cover.jpg',
     coverAlt: 'Etgahwa app screens: onboarding, Beans wallet and coffee packages',
     client: 'Madarat Communications',
@@ -559,6 +567,7 @@ export const projects: Project[] = [
     platforms: ['Android'],
     // TODO: add the stack you used
     technologies: [],
+    icon: '/images/projects/my-sudani/icon.jpg',
     coverImage: '/images/projects/my-sudani/cover.jpg',
     coverAlt: 'My Sudani app screens: services, home usage dashboard and rewards',
     client: 'Sudani Telecommunication',

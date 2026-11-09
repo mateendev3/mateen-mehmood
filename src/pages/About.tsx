@@ -3,6 +3,9 @@ import { profile } from '../data/profile';
 import { pageMeta } from '../data/site';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { asset } from '../lib/utils';
+import { visibleProjects } from '../lib/content';
+import { Link } from 'react-router';
+import { MapPin } from 'lucide-react';
 import { Backdrop } from '../components/ui/PageHeader';
 import { Button } from '../components/ui/Button';
 import { Icon } from '../components/ui/Icon';
@@ -14,23 +17,12 @@ import { FinalCta } from '../components/home/FinalCta';
 
 export default function About() {
   useDocumentMeta(pageMeta.about);
-  const initials = profile.name
-    .split(' ')
-    .map((w) => w[0])
-    .join('');
-  const facts = [
-    { icon: 'briefcase' as const, label: 'Experience', value: profile.stats[0]?.value ?? '' },
-    { icon: 'sparkles' as const, label: 'Focus', value: 'AI · Mobile · Web' },
-    profile.location ? { icon: 'map-pin' as const, label: 'Based in', value: profile.location } : null,
-    profile.timezone ? { icon: 'clock' as const, label: 'Timezone', value: profile.timezone } : null,
-  ].filter((f): f is NonNullable<typeof f> => !!f && !!f.value);
-
   return (
     <>
       {/* ── Introduction ─────────────────────────────────── */}
       <header className="relative isolate overflow-hidden pt-32 pb-16 sm:pt-40">
         <Backdrop />
-        <div className="container-page grid items-center gap-12 lg:grid-cols-[1.3fr_0.7fr] lg:gap-16">
+        <div className="container-page grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
           <Reveal>
             <p className="eyebrow mb-4">About me</p>
             <h1 className="text-4xl font-bold sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">{profile.about.headline}</h1>
@@ -43,29 +35,8 @@ export default function About() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="mx-auto w-full max-w-xs lg:max-w-none">
-            <div className="card overflow-hidden p-2">
-              <div className="aspect-square overflow-hidden rounded-[1rem]">
-                {profile.photo ? (
-                  <img src={asset(profile.photo)} alt={profile.photoAlt || profile.name} className="h-full w-full object-cover" />
-                ) : (
-                  <div aria-hidden="true" className="grid h-full place-items-center bg-[linear-gradient(135deg,var(--primary),var(--accent-2))]">
-                    <span className="font-display text-7xl font-extrabold text-white/95">{initials}</span>
-                  </div>
-                )}
-              </div>
-              {facts.length > 0 && (
-                <dl className="grid gap-4 p-5">
-                  {facts.map((fact) => (
-                    <div key={fact.label} className="flex items-center gap-3">
-                      <Icon name={fact.icon} className="size-4 text-accent" />
-                      <dt className="text-sm text-fg-muted">{fact.label}</dt>
-                      <dd className="ml-auto text-sm font-semibold">{fact.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              )}
-            </div>
+          <Reveal delay={0.1} className="mx-auto w-full max-w-md lg:max-w-none">
+            <ProfileCard />
           </Reveal>
         </div>
       </header>
@@ -138,5 +109,87 @@ export default function About() {
 
       <FinalCta title="Let's connect." description="Have an idea, an app that needs attention, or just a question? I'd be happy to hear from you." />
     </>
+  );
+}
+
+/** Professional "at a glance" card: monogram (or photo), key facts, track record and app icons. */
+function ProfileCard() {
+  const initials = profile.name
+    .split(' ')
+    .map((w) => w[0])
+    .join('');
+  const apps = visibleProjects.filter((p) => p.icon);
+  const highlights = [
+    profile.about.highlights[0],
+    { value: String(visibleProjects.length), label: 'Apps live on the App Store & Google Play' },
+    ...profile.about.highlights.slice(1),
+  ].filter(Boolean);
+
+  return (
+    <div className="relative">
+      <div
+        aria-hidden="true"
+        className="absolute -inset-8 -z-10 rounded-full bg-[conic-gradient(from_180deg,var(--primary),var(--accent-2),var(--primary))] opacity-[0.15] blur-3xl"
+      />
+      <div className="glass rounded-[1.75rem] p-6 shadow-[0_30px_80px_-24px_var(--glow),var(--shadow-lift)] sm:p-7">
+        {/* Identity */}
+        <div className="flex items-center gap-4">
+          {profile.photo ? (
+            <img
+              src={asset(profile.photo)}
+              alt={profile.photoAlt || profile.name}
+              className="size-16 rounded-2xl object-cover ring-1 ring-border"
+            />
+          ) : (
+            <span
+              aria-hidden="true"
+              className="grid size-16 shrink-0 place-items-center rounded-2xl bg-[linear-gradient(135deg,var(--primary),var(--accent-2))] font-display text-2xl font-extrabold text-white shadow-[0_10px_30px_-10px_var(--glow)]"
+            >
+              {initials}
+            </span>
+          )}
+          <div className="min-w-0">
+            <p className="font-display text-xl font-bold">{profile.name}</p>
+            <p className="text-sm text-fg-muted">{profile.title}</p>
+            {profile.location && (
+              <p className="mt-1 flex items-center gap-1 text-xs text-fg-subtle">
+                <MapPin className="size-3.5" aria-hidden="true" /> {profile.location}
+                {profile.timezone && <span>· {profile.timezone}</span>}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Track record */}
+        <dl className="mt-6 grid grid-cols-2 gap-3">
+          {highlights.map((h) => (
+            <div key={h.label} className="flex flex-col rounded-2xl border border-border bg-surface/70 p-4">
+              <dt className="order-2 mt-1 text-xs leading-snug text-fg-muted">{h.label}</dt>
+              <dd className="text-gradient order-1 font-display text-3xl font-extrabold tracking-tight">{h.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        {/* Apps */}
+        {apps.length > 0 && (
+          <div className="mt-6 border-t border-border pt-5">
+            <p className="text-xs font-semibold tracking-wider text-fg-subtle uppercase">Apps I’ve worked on</p>
+            <ul className="mt-3 grid gap-1.5" style={{ gridTemplateColumns: `repeat(${Math.min(apps.length, 9)}, minmax(0, 1fr))` }}>
+              {apps.map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    to={`/projects/${p.slug}`}
+                    title={p.title}
+                    className="block max-w-11 rounded-[22%] shadow-[var(--shadow-soft)] ring-1 ring-border transition-transform duration-200 hover:-translate-y-1 hover:scale-105"
+                  >
+                    <img src={asset(p.icon)} alt={p.title} loading="lazy" className="aspect-square w-full rounded-[22%] object-cover" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
