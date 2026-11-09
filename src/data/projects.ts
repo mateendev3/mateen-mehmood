@@ -110,4 +110,71 @@ export const projects: Project[] = [
     published: true,
     order: 1,
   },
+  {
+    slug: 'dream',
+    title: 'Dream – Dream Interpretation',
+    subtitle: 'Private calls and messages with expert dream interpreters — booked, paid and held in one app.',
+    summary:
+      'A consultation app where users pick an expert dream interpreter, book a private call or message session and pay securely — all in one place.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used, e.g. ['Flutter', 'Dart', 'Firebase', 'Stripe']
+    technologies: [],
+    coverImage: '/images/projects/dream/cover.jpg',
+    coverAlt: 'Dream app screens: consultant profile, home and incoming call',
+    overview:
+      'Dream is a personal, 24/7 guide to understanding dreams. Users browse a panel of consultants, read their bios, credentials and reviews, pick a convenient time and call package, pay in the app and then attend a private, confidential call or message session for a personal interpretation.\n\nInterpretations draw on classical scholarship such as Ibn Sirin and Al-Nabulsi, and the app serves an international audience in Arabic, English, French and Indonesian.',
+    // TODO: describe your own contribution, e.g. 'Built the Flutter app', 'In-app calling', 'Wallet & payments'
+    myRole: [],
+    features: [
+      {
+        title: 'Expert consultant directory',
+        description: 'Browse consultants with bios, credentials, call counts, ratings and reviews to find the right match.',
+      },
+      {
+        title: 'Private calls & messages',
+        description: 'One-on-one, confidential voice calls and text sessions, with in-app incoming-call handling.',
+      },
+      {
+        title: 'Appointments & call packages',
+        description: 'Book a time, choose a call package and track accepted and completed sessions with remaining calls.',
+      },
+      {
+        title: 'Secure booking & payments',
+        description: 'Checkout with cards via Stripe or account balance, with promo codes and clear order details.',
+      },
+      {
+        title: 'In-app wallet',
+        description: 'Refill your balance or transfer it to another account in a couple of taps, with full payment history.',
+      },
+      {
+        title: 'Multilingual experience',
+        description: 'Switch between Arabic, English, French and Indonesian for an international audience.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/dream/screen-1.jpg', alt: 'Dream home screen listing consultants for calls and messages', orientation: 'portrait', frame: false },
+      { src: '/images/projects/dream/screen-2.jpg', alt: 'Consultant profile with bio, stats and reviews', orientation: 'portrait', frame: false },
+      { src: '/images/projects/dream/screen-3.jpg', alt: 'Appointments list with call and message actions', orientation: 'portrait', frame: false },
+      { src: '/images/projects/dream/screen-4.jpg', alt: 'Incoming call from a consultant', orientation: 'portrait', frame: false },
+      { src: '/images/projects/dream/screen-5.jpg', alt: 'Booking checkout with promo code and Stripe payment', orientation: 'portrait', frame: false },
+      { src: '/images/projects/dream/screen-6.jpg', alt: 'Language picker with Arabic, English, French and Indonesian', orientation: 'portrait', frame: false },
+      { src: '/images/projects/dream/screen-7.jpg', alt: 'Account and profile details screen', orientation: 'portrait', frame: false },
+      { src: '/images/projects/dream/screen-8.jpg', alt: 'Wallet screen to refill or transfer balance', orientation: 'portrait', frame: false },
+    ],
+    results: [
+      '100K+ downloads on Google Play',
+      '4.8★ rating on Google Play',
+      '4.2★ from 138 ratings on the App Store',
+      'Live on iOS and Android since 2020, with regular updates',
+    ],
+    links: {
+      appStore: 'https://apps.apple.com/sa/app/dream-dream-interpretation/id1515745954',
+      playStore: 'https://play.google.com/store/apps/details?id=com.abdulazizahmed.dream',
+      website: 'https://dream-app.net/',
+    },
+    featured: true,
+    published: true,
+    order: 2,
+  },
 ];
