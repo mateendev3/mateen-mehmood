@@ -2,7 +2,7 @@ import { AlertTriangle, ArrowUpRight, Mail } from 'lucide-react';
 import { profile } from '../data/profile';
 import { pageMeta } from '../data/site';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { formspreeId, hasEmail, socials } from '../lib/content';
+import { hasEmail, hasFormService, socials } from '../lib/content';
 import { cn, mailto } from '../lib/utils';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Icon, SocialIcon } from '../components/ui/Icon';
@@ -11,7 +11,7 @@ import { ContactForm } from '../components/contact/ContactForm';
 
 export default function Contact() {
   useDocumentMeta(pageMeta.contact);
-  const canReceive = hasEmail || !!formspreeId;
+  const canReceive = hasEmail || hasFormService;
 
   return (
     <>
@@ -26,13 +26,13 @@ export default function Contact() {
           <p className="mb-8 flex items-start gap-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-800 dark:text-amber-200">
             <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
             <span>
-              <strong>Dev notice:</strong> set <code>email</code> and/or <code>contact.formspreeId</code> in{' '}
+              <strong>Dev notice:</strong> set <code>email</code>, <code>contact.formsubmit</code> or <code>contact.formspreeId</code> in{' '}
               <code>src/data/profile.ts</code> to enable the contact form and email buttons. This notice is not shown in production.
             </span>
           </p>
         )}
 
-        <div className={cn('grid gap-8', (hasEmail || formspreeId) && 'lg:grid-cols-[0.8fr_1.2fr] lg:gap-12')}>
+        <div className={cn('grid gap-8', canReceive && 'lg:grid-cols-[0.8fr_1.2fr] lg:gap-12')}>
           <Reveal className="space-y-5">
             {profile.availability && (
               <div className="card flex items-center gap-3 p-5">

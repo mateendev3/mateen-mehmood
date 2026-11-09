@@ -4,7 +4,7 @@ import { AlertCircle, CheckCircle2, Loader2, Send } from 'lucide-react';
 import { activeServices } from '../../data/services';
 import { contactOptions } from '../../data/site';
 import { profile } from '../../data/profile';
-import { formspreeId, hasEmail } from '../../lib/content';
+import { formspreeId, formsubmitKey, hasEmail } from '../../lib/content';
 import { cn, mailto } from '../../lib/utils';
 import { Button } from '../ui/Button';
 
@@ -42,7 +42,13 @@ function validate(values: Fields): Errors {
 export function ContactForm() {
   const [params] = useSearchParams();
   const preselected = activeServices.find((s) => s.id === params.get('service'))?.title ?? '';
-  const mode: 'formspree' | 'mailto' | null = formspreeId ? 'formspree' : hasEmail ? 'mailto' : null;
+  const mode: 'formspree' | 'formsubmit' | 'mailto' | null = formspreeId
+    ? 'formspree'
+    : formsubmitKey
+      ? 'formsubmit'
+      : hasEmail
+        ? 'mailto'
+        : null;
 
   const [values, setValues] = useState<Fields>({
     name: '',
@@ -89,12 +95,32 @@ export function ContactForm() {
 
     setStatus('submitting');
     try {
-      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...values, _subject: `Project enquiry: ${values.service}`, _replyto: values.email }),
-      });
+      const subject = `New project enquiry: ${values.service} — ${values.name.trim()}`;
+      const payload = {
+        name: values.name.trim(),
+        email: values.email.trim(),
+        service: values.service,
+        budget: values.budget || 'Not specified',
+        timeline: values.timeline || 'Not specified',
+        message: values.description.trim(),
+      };
+      const response =
+        mode === 'formsubmit'
+          ? await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(formsubmitKey)}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({ ...payload, _subject: subject, _replyto: payload.email, _template: 'table', _captcha: 'false' }),
+            })
+          : await fetch(`https://formspree.io/f/${formspreeId}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({ ...payload, _subject: subject, _replyto: payload.email }),
+            });
       if (!response.ok) throw new Error(`Request failed (${response.status})`);
+      if (mode === 'formsubmit') {
+        const result = (await response.json().catch(() => ({}))) as { success?: boolean | string };
+        if (String(result.success) !== 'true') throw new Error('FormSubmit rejected the message');
+      }
       setStatus('success');
     } catch {
       setStatus('error');

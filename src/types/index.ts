@@ -102,6 +102,12 @@ export interface Profile {
      * When empty, the contact form opens the visitor's email app instead (needs `email`).
      */
     formspreeId: string;
+    /**
+     * FormSubmit (https://formsubmit.co) — free, no account. Use your email address, or the
+     * random alias FormSubmit gives you after activation (hides your email from page source).
+     * The first submission sends you an activation email; click it once and messages start arriving.
+     */
+    formsubmit?: string;
     responseTime?: string;
   };
 }

@@ -200,6 +200,8 @@ export const profile: Profile = {
     // Optional: create a free form at https://formspree.io and paste its ID here (e.g. 'xyzabcd').
     // Without it, the contact form opens the visitor's email app with the message pre-filled.
     formspreeId: '',
+    // Messages from the contact form are delivered straight to this inbox via FormSubmit.
+    formsubmit: 'mateendev3@gmail.com',
     // Optional, e.g. 'I usually reply within 1–2 business days.' Leave empty to hide.
     responseTime: '',
   },
