@@ -1215,4 +1215,64 @@ export const projects: Project[] = [
     published: true,
     order: 18,
   },
+  {
+    slug: 'layla-hub',
+    title: 'Layla Hub',
+    subtitle: 'An AI-powered internal operations platform that runs Layla’s product, engineering, QA and support work in one place.',
+    summary:
+      'An internal AI web app for the whole Layla team — developers, QA, support and product — that automates bug triage and fix planning, releases, testing, design reviews and website health.',
+    category: 'AI & Automation',
+    industries: ['AI', 'Developer Tools'],
+    status: 'Internal tool',
+    platforms: ['Web'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/layla-hub/icon.jpg',
+    coverImage: '/images/projects/layla-hub/cover.jpg',
+    coverAlt: 'Layla Hub screens: bug fix batches and the app screen map',
+    client: 'LaylaElectric, Inc.',
+    overview:
+      'Layla Hub is the operating system behind Layla’s product team. It brings frontend, backend and app developers, QA, customer support and other teams into one AI-assisted workspace, so work that used to be scattered across tools, chats and spreadsheets flows through a single, automated process.\n\nEach person starts from a personal overview of what is waiting for them — reviews, mentions, decisions and tasks — while AI agents do the heavy lifting in the background: grouping and planning bug fixes, writing test reports, auditing the website and keeping a living map of every screen in the app.',
+    challenge:
+      'A small team shipping an IoT product across a mobile app, a backend and a marketing website was juggling bugs, releases, design changes, QA and support requests across many disconnected tools — making it hard to see what needed attention and slow to move work from report to release.',
+    solution:
+      'A single web platform with AI built into every workflow. Confirmed bugs are automatically grouped into fix batches by the screen and code they share; AI drafts each fix plan, reviews it for gaps, and every fix ships with a test that proves it and a report anyone can check. The same approach powers releases, design reviews, visual checks and a page-by-page audit of the website.',
+    myRole: [],
+    features: [
+      {
+        title: 'AI-assisted bug pipeline',
+        description:
+          'Bugs move from plan → ready → being fixed → review → testing → shipped. AI suggests fix batches, drafts fix plans and reviews them for gaps; every fix comes with a test and a report.',
+        image: { src: '/images/projects/layla-hub/screen-1.jpg', alt: 'Bugs: fix batches and pipeline', orientation: 'landscape' },
+      },
+      {
+        title: 'Living map of every app screen',
+        description:
+          'Every screen of the mobile app grouped by where it is opened, with states, pop-ups, tap depth and the decisions behind it — drawn from code and real screenshots.',
+        image: { src: '/images/projects/layla-hub/screen-2.jpg', alt: 'Screens: app screen map', orientation: 'landscape' },
+      },
+      {
+        title: 'Website pages & SEO audit',
+        description:
+          'Every page of the marketing site as it is on stage, with open bugs, SEO issues, work in progress and search clicks per page.',
+        image: { src: '/images/projects/layla-hub/screen-3.jpg', alt: 'Pages: website audit', orientation: 'landscape' },
+      },
+      {
+        title: 'Personal overview & reviews',
+        description: 'Each teammate sees what is waiting for them — reviews, mentions, decisions and assigned tasks — in one place.',
+      },
+      {
+        title: 'Releases, tests & merges',
+        description: 'Release test reports listing every fix and design in a build and how to test each, with a guided merge-and-release flow.',
+      },
+      {
+        title: 'Design system & docs',
+        description: 'Design reviews, visual checks, components, design tokens, routes and team docs alongside the work itself.',
+      },
+    ],
+    gallery: [],
+    featured: false,
+    published: true,
+    order: 19,
+  },
 ];
