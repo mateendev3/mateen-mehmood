@@ -194,6 +194,8 @@ export interface Project {
   industries: string[];
   platforms: string[];
   technologies: string[];
+  /** Optional stage label shown as a badge, e.g. 'In beta' or 'In development'. Omit for launched products. */
+  status?: string;
   /** Optional year or range, e.g. "2024" or "2022 – 2024". */
   year?: string;
   /** Optional client / company name — only if you're allowed to name them. */

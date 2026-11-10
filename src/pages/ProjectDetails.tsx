@@ -27,7 +27,7 @@ function projectLinks(project: Project) {
   return [
     l.appStore && { label: 'App Store', url: l.appStore },
     l.playStore && { label: 'Google Play', url: l.playStore },
-    l.website && { label: 'Live website', url: l.website },
+    l.website && { label: project.status ? 'Website' : 'Live website', url: l.website },
     l.demo && { label: 'Live demo', url: l.demo },
     l.github && { label: 'Source code', url: l.github },
     ...(l.other ?? []),
@@ -69,6 +69,12 @@ function CaseStudy({ project }: { project: Project }) {
             {project.platforms.map((p) => (
               <Chip key={p}>{p}</Chip>
             ))}
+            {project.status && (
+              <Chip tone="warning">
+                <span className="size-1.5 animate-pulse rounded-full bg-current" aria-hidden="true" />
+                {project.status}
+              </Chip>
+            )}
             {!project.published && <Chip tone="warning">Draft · only visible in development</Chip>}
           </div>
 

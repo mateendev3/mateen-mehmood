@@ -1146,6 +1146,7 @@ export const projects: Project[] = [
       'A B2B web platform that turns utility bills and a 5-minute building questionnaire into AI-powered diagnostics, an energy grade and a prioritised savings plan — no hardware or site visits.',
     category: 'Web Applications',
     industries: ['AI', 'Energy', 'Hospitality'],
+    status: 'In beta',
     platforms: ['Web'],
     technologies: [
       'Next.js',
@@ -1165,7 +1166,7 @@ export const projects: Project[] = [
     coverAlt: 'Noola Impact web app: action plan and property dashboard',
     client: 'Noola',
     overview:
-      'Noola Impact shows mid-size hotel operators what is wasting money on energy and water — and how to fix it — without hardware, site visits or an enterprise budget. Operators upload their utility bills and answer a short building questionnaire; the platform returns same-day diagnostics, an A–G energy grade and a prioritised action plan with savings and payback per recommendation.\n\nFrom there, operators request quotes from vetted suppliers through an integrated marketplace and track verified savings over time. The platform is multi-tenant from day one, so operators can work at portfolio and property level, and it is built for the Spanish market first — CUPS supply points, P1–P6 tariff periods and local pricing data.',
+      'Noola Impact shows mid-size hotel operators what is wasting money on energy and water — and how to fix it — without hardware, site visits or an enterprise budget. Operators upload their utility bills and answer a short building questionnaire; the platform returns same-day diagnostics, an A–G energy grade and a prioritised action plan with savings and payback per recommendation.\n\nFrom there, operators request quotes from vetted suppliers through an integrated marketplace and track verified savings over time. The platform is multi-tenant from day one, so operators can work at portfolio and property level, and it is built for the Spanish market first — CUPS supply points, P1–P6 tariff periods and local pricing data.\n\nThe platform is in active development and currently in beta, with pilot hotel operators onboarding ahead of full launch.',
     challenge:
       'Mid-market hotel groups are too small for enterprise energy tools and too complex for basic software, so most run their utilities from spreadsheets. Traditional energy audits take months and cost thousands, which means savings opportunities go unnoticed.',
     solution:
@@ -1203,12 +1204,12 @@ export const projects: Project[] = [
     ],
     gallery: [
       { src: '/images/projects/noola/screen-7.jpg', alt: 'noola.eco marketing website', orientation: 'landscape', caption: 'Marketing website — noola.eco' },
-      { src: '/images/projects/noola/screen-1.jpg', alt: 'Sign in with savings overview', orientation: 'landscape', caption: 'Web app sign-in — app.noola.eco' },
+      { src: '/images/projects/noola/screen-1.jpg', alt: 'Sign in with savings overview', orientation: 'landscape', caption: 'Web app sign-in (beta) — app.noola.eco' },
       { src: '/images/projects/noola/screen-3.jpg', alt: 'Analysis in progress screen', orientation: 'landscape' },
     ],
     links: {
       website: 'https://noola.eco/',
-      other: [{ label: 'Web app', url: 'https://app.noola.eco/' }],
+      other: [{ label: 'Web app (beta)', url: 'https://app.noola.eco/' }],
     },
     featured: false,
     published: true,

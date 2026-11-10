@@ -38,6 +38,12 @@ export function ProjectCard({
       </div>
 
       <div className={cn('flex flex-1 flex-col p-6', wide && 'md:justify-center md:p-10')}>
+        {project.status && (
+          <span className="mb-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-300">
+            <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
+            {project.status}
+          </span>
+        )}
         <Heading className={cn('font-semibold tracking-tight', wide ? 'text-xl md:text-3xl md:font-bold' : 'text-xl')}>
           <Link to={`/projects/${project.slug}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
             {project.title}
