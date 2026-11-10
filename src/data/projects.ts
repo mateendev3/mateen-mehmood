@@ -947,4 +947,128 @@ export const projects: Project[] = [
     published: true,
     order: 14,
   },
+  {
+    slug: 'safedeposit',
+    title: 'SafeDeposit',
+    subtitle: 'Escrow-style deposits for buying from strangers — your money is only released when you’re happy.',
+    summary:
+      'A secure deposit app for cars, apartments and online purchases: hold funds safely, set your own terms, then release or cancel — with dispute support.',
+    category: 'Mobile Apps',
+    industries: ['Fintech', 'Marketplace'],
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/safedeposit/icon.jpg',
+    coverImage: '/images/projects/safedeposit/cover.jpg',
+    coverAlt: 'SafeDeposit app screens: fund history, dashboard and payout log',
+    client: 'SafeDeposit Inc.',
+    overview:
+      'SafeDeposit makes it safe to put a deposit on something when you don’t know or trust the other party — a car, an apartment or any product bought online. Instead of sending money directly, the buyer places a secure deposit that is held until the deal is done.\n\nWhen the buyer arrives and is happy with what they’re purchasing, they release the deposit; if not, they cancel. Both sides can set their own terms and conditions, and SafeDeposit resolves any disputes.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Secure deposits',
+        description: 'Hold funds safely until the buyer is satisfied — no money sent to an unknown party upfront.',
+      },
+      {
+        title: 'Custom terms & conditions',
+        description: 'Create a deal with its own title, terms, documents and transaction limits.',
+      },
+      {
+        title: 'Release or cancel',
+        description: 'Release the deposit when happy, or cancel if the deal falls through.',
+      },
+      {
+        title: 'Dashboard & balances',
+        description: 'Balance, total deposits, payouts, pending and completed deposits at a glance.',
+      },
+      {
+        title: 'Fund history & payout log',
+        description: 'Searchable, filterable history of every deposit and payout with statuses.',
+      },
+      {
+        title: 'Disputes & support',
+        description: 'Raise a support ticket and let SafeDeposit resolve issues between parties.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/safedeposit/screen-1.jpg', alt: 'SafeDeposit splash screen', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safedeposit/screen-2.jpg', alt: 'Dashboard with balances and quick links', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safedeposit/screen-3.jpg', alt: 'Fund history of deposits', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safedeposit/screen-4.jpg', alt: 'SafeDeposit ensures your money is secure', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safedeposit/screen-5.jpg', alt: 'Add a deposit with terms and conditions', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safedeposit/screen-6.jpg', alt: 'Payout log', orientation: 'portrait', frame: false },
+    ],
+    results: ['1K+ downloads on Google Play', 'Live on iOS and Android since 2023'],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/safe-deposit/id1461050591',
+      playStore: 'https://play.google.com/store/apps/details?id=com.safedeposit.andriod',
+    },
+    featured: false,
+    published: true,
+    order: 15,
+  },
+  {
+    slug: 'safetytracker',
+    title: 'SafetyTracker®',
+    subtitle: 'A Q-HSE platform app for reporting incidents, running inspections and managing workplace safety in real time.',
+    summary:
+      'Enterprise workplace-safety app: instant observations, audits and inspections, toolbox meetings with quizzes, last-minute risk assessments and a competency matrix.',
+    category: 'Mobile Apps',
+    industries: ['Enterprise', 'Health & Safety'],
+    platforms: ['Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/safetytracker/icon.jpg',
+    coverImage: '/images/projects/safetytracker/cover.jpg',
+    coverAlt: 'SafetyTracker app screens: observations, HSE dashboard and inspections',
+    client: 'Im’enSe International',
+    overview:
+      'SafetyTracker® is a Q-HSE-PI platform (quality, health, safety, environment and fire prevention) that helps companies meet regulatory compliance and build a proactive safety culture. The mobile app, integrated with the web platform, replaces paper reports and email chains with structured, real-time reporting from the field.\n\nIt is used by managers, supervisors, contractors and workers across manufacturing, construction, energy, healthcare, logistics, the public sector and education.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Instant observations',
+        description: 'Report safety observations in real time with photos and location; managers assign and track them to resolution.',
+      },
+      {
+        title: 'Audits & inspections',
+        description: 'Plan, document and analyse inspections with geolocation, media and results tracking.',
+      },
+      {
+        title: 'Toolbox meetings',
+        description: 'Safety meetings with quizzes on mobile, plus group assessments for workers without phones.',
+      },
+      {
+        title: 'Last-minute risk assessment',
+        description: 'LMRA checklists to assess and manage risks right before work starts.',
+      },
+      {
+        title: 'Competency matrix',
+        description: 'Track certifications, training and qualifications for staff and subcontractors.',
+      },
+      {
+        title: 'Custom forms & analytics',
+        description: 'Configurable forms and templates, with charts for real-time decision-making.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/safetytracker/screen-1.jpg', alt: 'SafetyTracker — think safe, work safer', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safetytracker/screen-2.jpg', alt: 'Dashboard with all HSE tools', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safetytracker/screen-3.jpg', alt: 'Share, assign and track observations', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safetytracker/screen-4.jpg', alt: 'Toolbox meeting quiz', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safetytracker/screen-5.jpg', alt: 'Digital audits and inspections', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safetytracker/screen-6.jpg', alt: 'Last-minute risk assessment', orientation: 'portrait', frame: false },
+      { src: '/images/projects/safetytracker/screen-7.jpg', alt: 'Competency matrix for certifications', orientation: 'portrait', frame: false },
+    ],
+    results: ['Live on Android, integrated with the SafetyTracker web platform', 'Actively maintained, with regular updates'],
+    links: {
+      playStore: 'https://play.google.com/store/apps/details?id=net.imense.safetytracker.android',
+    },
+    featured: false,
+    published: true,
+    order: 16,
+  },
 ];
