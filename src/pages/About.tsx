@@ -121,7 +121,7 @@ function ProfileCard() {
   const apps = visibleProjects.filter((p) => p.icon);
   const highlights = [
     profile.about.highlights[0],
-    { value: String(visibleProjects.length), label: 'Apps live on the App Store & Google Play' },
+    { value: String(visibleProjects.filter((p) => p.links?.appStore || p.links?.playStore).length), label: 'Apps live on the App Store & Google Play' },
     ...profile.about.highlights.slice(1),
   ].filter(Boolean);
 

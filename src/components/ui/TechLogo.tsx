@@ -14,6 +14,7 @@ import {
   siFlutter,
   siGit,
   siGithub,
+  siGooglecloud,
   siGo,
   siGraphql,
   siJavascript,
@@ -29,15 +30,19 @@ import {
   siPostman,
   siPython,
   siReact,
+  siReactquery,
   siRedis,
+  siShadcnui,
   siSqlite,
   siStripe,
   siSupabase,
   siSwift,
   siTailwindcss,
   siTypescript,
+  siVite,
   siVuedotjs,
   siXcode,
+  siZod,
   type SimpleIcon,
 } from 'simple-icons';
 import { cn } from '../../lib/utils';
@@ -66,6 +71,10 @@ const logos: Record<string, SimpleIcon> = {
   TypeScript: siTypescript,
   JavaScript: siJavascript,
   'Tailwind CSS': siTailwindcss,
+  Vite: siVite,
+  'React Query': siReactquery,
+  'shadcn/ui': siShadcnui,
+  Zod: siZod,
   // Backend & data
   'Node.js': siNodedotjs,
   Express: siExpress,
@@ -85,6 +94,7 @@ const logos: Record<string, SimpleIcon> = {
   'REST & GraphQL': siGraphql,
   // AI
   LangChain: siLangchain,
+  'Google Cloud Vision': siGooglecloud,
   // Integrations & tools
   Stripe: siStripe,
   Docker: siDocker,

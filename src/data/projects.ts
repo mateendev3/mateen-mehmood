@@ -1138,4 +1138,77 @@ export const projects: Project[] = [
     published: true,
     order: 5,
   },
+  {
+    slug: 'noola-impact',
+    title: 'Noola Impact',
+    subtitle: 'AI-powered energy and water diagnostics for hotel operators — from utility bills to an ROI-ranked action plan in a day.',
+    summary:
+      'A B2B web platform that turns utility bills and a 5-minute building questionnaire into AI-powered diagnostics, an energy grade and a prioritised savings plan — no hardware or site visits.',
+    category: 'Web Applications',
+    industries: ['AI', 'Energy', 'Hospitality'],
+    platforms: ['Web'],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Tailwind CSS',
+      'shadcn/ui',
+      'React Query',
+      'Zod',
+      'PostgreSQL',
+      'Google Cloud Vision',
+      'Stripe',
+    ],
+    icon: '/images/projects/noola/icon.jpg',
+    coverImage: '/images/projects/noola/cover.jpg',
+    coverAlt: 'Noola Impact web app: action plan and property dashboard',
+    client: 'Noola',
+    overview:
+      'Noola Impact shows mid-size hotel operators what is wasting money on energy and water — and how to fix it — without hardware, site visits or an enterprise budget. Operators upload their utility bills and answer a short building questionnaire; the platform returns same-day diagnostics, an A–G energy grade and a prioritised action plan with savings and payback per recommendation.\n\nFrom there, operators request quotes from vetted suppliers through an integrated marketplace and track verified savings over time. The platform is multi-tenant from day one, so operators can work at portfolio and property level, and it is built for the Spanish market first — CUPS supply points, P1–P6 tariff periods and local pricing data.',
+    challenge:
+      'Mid-market hotel groups are too small for enterprise energy tools and too complex for basic software, so most run their utilities from spreadsheets. Traditional energy audits take months and cost thousands, which means savings opportunities go unnoticed.',
+    solution:
+      'An AI-assisted pipeline that reads Spanish utility bills with OCR, normalises consumption for weather and occupancy, benchmarks each property against similar buildings in its climate zone, and generates realistic, non-overlapping savings estimates shown as ranges. Recommendations are ranked by ROI and payback, then connected to a supplier marketplace and a monthly verification engine that proves actual savings per measure.',
+    myRole: [],
+    features: [
+      {
+        title: 'Bill upload with OCR',
+        description: 'Electricity, gas and water bills are read automatically, with low-confidence extractions flagged for review.',
+        image: { src: '/images/projects/noola/screen-2.jpg', alt: 'Create account screen', orientation: 'landscape' },
+      },
+      {
+        title: '6-step building questionnaire',
+        description: 'Property basics, occupancy, HVAC, lighting, building envelope and bills — with progress saving.',
+        image: { src: '/images/projects/noola/screen-4.jpg', alt: 'Building questionnaire, step 1', orientation: 'landscape' },
+      },
+      {
+        title: 'AI-powered diagnostics',
+        description: 'Energy grade, consumption breakdown, environmental impact and savings potential — delivered the same day.',
+        image: { src: '/images/projects/noola/screen-5.jpg', alt: 'Property dashboard with KPIs and forecast', orientation: 'landscape' },
+      },
+      {
+        title: 'ROI-ranked action plan',
+        description: 'Recommendations filtered by impact, category and status, each with yearly savings and payback period.',
+        image: { src: '/images/projects/noola/screen-6.jpg', alt: 'Action plan with prioritised recommendations', orientation: 'landscape' },
+      },
+      {
+        title: 'Benchmarking & forecasting',
+        description: 'Compare against similar properties and forecast consumption with and without optimisation.',
+      },
+      {
+        title: 'Supplier marketplace & verification',
+        description: 'Request quotes from vetted suppliers, then track verified savings month by month.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/noola/screen-1.jpg', alt: 'Sign in with savings overview', orientation: 'landscape' },
+      { src: '/images/projects/noola/screen-3.jpg', alt: 'Analysis in progress screen', orientation: 'landscape' },
+    ],
+    links: {
+      website: 'https://noola.eco/',
+    },
+    featured: false,
+    published: true,
+    order: 18,
+  },
 ];
