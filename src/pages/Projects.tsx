@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { FolderOpen, Search, X } from 'lucide-react';
+import { ChevronDown, FolderOpen, Search, X } from 'lucide-react';
 import { pageMeta } from '../data/site';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { projectIndustries, visibleProjects } from '../lib/content';
@@ -40,12 +40,15 @@ export default function Projects() {
 
   const hasProjects = visibleProjects.length > 0;
   const showFilters = visibleProjects.length > 3 || projectIndustries.length > 1;
-  const chip = (active: boolean) =>
+  // Most common industries become tabs; the rest live in a compact "More" menu so the bar never wraps.
+  const PRIMARY_TABS = 5;
+  const primary = projectIndustries.slice(0, PRIMARY_TABS);
+  const secondary = projectIndustries.slice(PRIMARY_TABS);
+  const activeInMore = secondary.some((i) => i.name === industry);
+  const tab = (active: boolean) =>
     cn(
-      'inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors',
-      active
-        ? 'border-transparent bg-fg text-bg'
-        : 'border-border bg-surface text-fg-muted hover:border-border-strong hover:text-fg',
+      'relative -mb-px inline-flex shrink-0 items-center gap-1.5 border-b-2 px-1 pt-1 pb-3 text-sm font-medium whitespace-nowrap transition-colors',
+      active ? 'border-accent text-fg' : 'border-transparent text-fg-muted hover:border-border-strong hover:text-fg',
     );
 
   return (
@@ -67,40 +70,62 @@ export default function Projects() {
         ) : (
           <>
             {showFilters && (
-              <div className="mb-10 space-y-4">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <p id="industry-filter-label" className="text-sm font-semibold text-fg">
-                    Filter by industry
-                  </p>
-                  <div className="relative w-full sm:w-72">
-                    <label htmlFor="project-search" className="sr-only">
-                      Search projects
-                    </label>
-                    <Search className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-fg-subtle" aria-hidden="true" />
-                    <input
-                      id="project-search"
-                      type="search"
-                      placeholder="Search apps, clients, tech…"
-                      value={query}
-                      onChange={(e) => setParam('q', e.target.value)}
-                      className="h-11 w-full rounded-full border border-border bg-surface pr-4 pl-10 text-sm text-fg outline-none placeholder:text-fg-subtle focus:border-accent focus:ring-4 focus:ring-accent-soft"
-                    />
-                  </div>
-                </div>
-                <div role="group" aria-labelledby="industry-filter-label" className="flex flex-wrap gap-2">
-                  <button type="button" aria-pressed={industry === ALL} onClick={() => setParam('industry', ALL)} className={chip(industry === ALL)}>
-                    All projects
-                    <span className={cn('text-xs', industry === ALL ? 'text-bg/70' : 'text-fg-subtle')}>{visibleProjects.length}</span>
-                  </button>
-                  {projectIndustries.map(({ name, count }) => {
-                    const active = name === industry;
-                    return (
-                      <button key={name} type="button" aria-pressed={active} onClick={() => setParam('industry', name)} className={chip(active)}>
-                        {name}
-                        <span className={cn('text-xs', active ? 'text-bg/70' : 'text-fg-subtle')}>{count}</span>
-                      </button>
-                    );
-                  })}
+              <div className="mb-10 flex flex-col-reverse gap-4 border-b border-border md:flex-row md:items-end md:justify-between md:gap-8">
+                <nav aria-label="Filter projects by industry" className="-mx-1 overflow-x-auto px-1 [scrollbar-width:none]">
+                  <ul className="flex items-center gap-6">
+                    {[{ name: ALL, count: visibleProjects.length }, ...primary].map(({ name, count }) => {
+                      const active = name === industry;
+                      return (
+                        <li key={name}>
+                          <button type="button" aria-pressed={active} onClick={() => setParam('industry', name)} className={tab(active)}>
+                            {name === ALL ? 'All' : name}
+                            <span className="text-xs font-normal text-fg-subtle tabular-nums">{count}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                    {secondary.length > 0 && (
+                      <li>
+                        <label className={cn(tab(activeInMore), 'cursor-pointer pr-5')}>
+                          {activeInMore ? industry : 'More'}
+                          {activeInMore && (
+                            <span className="text-xs font-normal text-fg-subtle tabular-nums">
+                              {secondary.find((i) => i.name === industry)?.count}
+                            </span>
+                          )}
+                          <ChevronDown className="pointer-events-none absolute right-0 bottom-[0.9rem] size-3.5 text-fg-subtle" aria-hidden="true" />
+                          <select
+                            aria-label="More industries"
+                            value={activeInMore ? industry : ''}
+                            onChange={(e) => setParam('industry', e.target.value || ALL)}
+                            className="absolute inset-0 cursor-pointer opacity-0"
+                          >
+                            <option value="">{activeInMore ? 'All industries' : 'More industries'}</option>
+                            {secondary.map(({ name, count }) => (
+                              <option key={name} value={name}>
+                                {name} ({count})
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      </li>
+                    )}
+                  </ul>
+                </nav>
+
+                <div className="relative w-full md:mb-1 md:w-64">
+                  <label htmlFor="project-search" className="sr-only">
+                    Search projects
+                  </label>
+                  <Search className="pointer-events-none absolute top-1/2 left-0 size-4 -translate-y-1/2 text-fg-subtle" aria-hidden="true" />
+                  <input
+                    id="project-search"
+                    type="search"
+                    placeholder="Search projects"
+                    value={query}
+                    onChange={(e) => setParam('q', e.target.value)}
+                    className="h-10 w-full border-b border-transparent bg-transparent pr-2 pl-6 text-sm text-fg outline-none placeholder:text-fg-subtle focus:border-accent"
+                  />
                 </div>
               </div>
             )}
