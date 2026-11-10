@@ -1201,11 +1201,13 @@ export const projects: Project[] = [
       },
     ],
     gallery: [
-      { src: '/images/projects/noola/screen-1.jpg', alt: 'Sign in with savings overview', orientation: 'landscape' },
+      { src: '/images/projects/noola/screen-7.jpg', alt: 'noola.eco marketing website', orientation: 'landscape', caption: 'Marketing website — noola.eco' },
+      { src: '/images/projects/noola/screen-1.jpg', alt: 'Sign in with savings overview', orientation: 'landscape', caption: 'Web app sign-in — app.noola.eco' },
       { src: '/images/projects/noola/screen-3.jpg', alt: 'Analysis in progress screen', orientation: 'landscape' },
     ],
     links: {
       website: 'https://noola.eco/',
+      other: [{ label: 'Web app', url: 'https://app.noola.eco/' }],
     },
     featured: false,
     published: true,
