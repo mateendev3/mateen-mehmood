@@ -23,9 +23,20 @@ export const projectCategories: ProjectCategory[] = PROJECT_CATEGORIES.filter((c
   visibleProjects.some((p) => p.category === c),
 );
 
+/** Industries that have at least one project, most common first, with counts. */
+export const projectIndustries: { name: string; count: number }[] = Object.entries(
+  visibleProjects.reduce<Record<string, number>>((acc, p) => {
+    for (const i of p.industries) acc[i] = (acc[i] ?? 0) + 1;
+    return acc;
+  }, {}),
+)
+  .map(([name, count]) => ({ name, count }))
+  .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+
 export function relatedProjects(project: Project, limit = 3) {
   const score = (p: Project) =>
-    (p.category === project.category ? 10 : 0) +
+    p.industries.filter((i) => project.industries.includes(i)).length * 10 +
+    (p.category === project.category ? 3 : 0) +
     p.technologies.filter((t) => project.technologies.includes(t)).length;
   return visibleProjects
     .filter((p) => p.slug !== project.slug)

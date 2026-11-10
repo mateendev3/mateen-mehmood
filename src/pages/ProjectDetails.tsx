@@ -56,7 +56,16 @@ function CaseStudy({ project }: { project: Project }) {
           </Link>
 
           <div className="mt-8 flex flex-wrap items-center gap-2">
-            <Chip tone="accent">{project.category}</Chip>
+            {project.industries.map((industry) => (
+              <Link
+                key={industry}
+                to={`/projects?industry=${encodeURIComponent(industry)}`}
+                className="rounded-full transition-opacity hover:opacity-80"
+                title={`More ${industry} projects`}
+              >
+                <Chip tone="accent">{industry}</Chip>
+              </Link>
+            ))}
             {project.platforms.map((p) => (
               <Chip key={p}>{p}</Chip>
             ))}
@@ -177,10 +186,21 @@ function CaseStudy({ project }: { project: Project }) {
         <aside aria-label="Project details" className="lg:sticky lg:top-28 lg:self-start">
           <div className="card p-6">
             <dl className="space-y-5 text-sm">
-              <Detail label="Category">{project.category}</Detail>
+              {project.industries.length > 0 && (
+                <Detail label={project.industries.length > 1 ? 'Industries' : 'Industry'}>
+                  {project.industries.map((industry, i) => (
+                    <span key={industry}>
+                      {i > 0 && ', '}
+                      <Link to={`/projects?industry=${encodeURIComponent(industry)}`} className="hover:text-accent hover:underline">
+                        {industry}
+                      </Link>
+                    </span>
+                  ))}
+                </Detail>
+              )}
+              {project.client && <Detail label="Client">{project.client}</Detail>}
               {project.platforms.length > 0 && <Detail label="Platforms">{project.platforms.join(', ')}</Detail>}
               {project.year && <Detail label="Year">{project.year}</Detail>}
-              {project.client && <Detail label="Client">{project.client}</Detail>}
               {project.technologies.length > 0 && (
                 <Detail label="Technology stack">
                   <ul className="mt-1 flex flex-wrap gap-2">

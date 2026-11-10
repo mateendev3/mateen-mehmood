@@ -190,6 +190,8 @@ export interface Project {
   /** 1–2 sentence description used on cards and in meta descriptions. */
   summary: string;
   category: ProjectCategory;
+  /** Industries / domains, e.g. ['Health', 'Fintech']. Used for filters, tags and related projects. */
+  industries: string[];
   platforms: string[];
   technologies: string[];
   /** Optional year or range, e.g. "2024" or "2022 – 2024". */

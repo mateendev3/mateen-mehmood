@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router';
 import { FolderOpen, Search, X } from 'lucide-react';
 import { pageMeta } from '../data/site';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { projectCategories, visibleProjects } from '../lib/content';
+import { projectIndustries, visibleProjects } from '../lib/content';
 import { cn } from '../lib/utils';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Button } from '../components/ui/Button';
@@ -12,12 +12,12 @@ import { Reveal } from '../components/ui/Reveal';
 import { ProjectCard } from '../components/projects/ProjectCard';
 import { FinalCta } from '../components/home/FinalCta';
 
-const ALL = 'All Projects';
+const ALL = 'All';
 
 export default function Projects() {
   useDocumentMeta(pageMeta.projects);
   const [params, setParams] = useSearchParams();
-  const category = params.get('category') ?? ALL;
+  const industry = params.get('industry') ?? ALL;
   const query = params.get('q') ?? '';
 
   const setParam = (key: string, value: string) => {
@@ -30,16 +30,23 @@ export default function Projects() {
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     return visibleProjects.filter((p) => {
-      if (category !== ALL && p.category !== category) return false;
+      if (industry !== ALL && !p.industries.includes(industry)) return false;
       if (!q) return true;
-      return [p.title, p.subtitle, p.summary, p.category, ...p.technologies, ...p.platforms]
+      return [p.title, p.subtitle, p.summary, p.category, p.client, ...p.industries, ...p.technologies, ...p.platforms]
         .filter(Boolean)
         .some((field) => field!.toLowerCase().includes(q));
     });
-  }, [category, query]);
+  }, [industry, query]);
 
   const hasProjects = visibleProjects.length > 0;
-  const showFilters = visibleProjects.length > 3 || projectCategories.length > 1;
+  const showFilters = visibleProjects.length > 3 || projectIndustries.length > 1;
+  const chip = (active: boolean) =>
+    cn(
+      'inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors',
+      active
+        ? 'border-transparent bg-fg text-bg'
+        : 'border-border bg-surface text-fg-muted hover:border-border-strong hover:text-fg',
+    );
 
   return (
     <>
@@ -60,41 +67,40 @@ export default function Projects() {
         ) : (
           <>
             {showFilters && (
-              <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                <div role="group" aria-label="Filter by category" className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
-                  {[ALL, ...projectCategories].map((c) => {
-                    const active = c === category;
+              <div className="mb-10 space-y-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p id="industry-filter-label" className="text-sm font-semibold text-fg">
+                    Filter by industry
+                  </p>
+                  <div className="relative w-full sm:w-72">
+                    <label htmlFor="project-search" className="sr-only">
+                      Search projects
+                    </label>
+                    <Search className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-fg-subtle" aria-hidden="true" />
+                    <input
+                      id="project-search"
+                      type="search"
+                      placeholder="Search apps, clients, tech…"
+                      value={query}
+                      onChange={(e) => setParam('q', e.target.value)}
+                      className="h-11 w-full rounded-full border border-border bg-surface pr-4 pl-10 text-sm text-fg outline-none placeholder:text-fg-subtle focus:border-accent focus:ring-4 focus:ring-accent-soft"
+                    />
+                  </div>
+                </div>
+                <div role="group" aria-labelledby="industry-filter-label" className="flex flex-wrap gap-2">
+                  <button type="button" aria-pressed={industry === ALL} onClick={() => setParam('industry', ALL)} className={chip(industry === ALL)}>
+                    All projects
+                    <span className={cn('text-xs', industry === ALL ? 'text-bg/70' : 'text-fg-subtle')}>{visibleProjects.length}</span>
+                  </button>
+                  {projectIndustries.map(({ name, count }) => {
+                    const active = name === industry;
                     return (
-                      <button
-                        key={c}
-                        type="button"
-                        aria-pressed={active}
-                        onClick={() => setParam('category', c)}
-                        className={cn(
-                          'shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors',
-                          active
-                            ? 'border-transparent bg-fg text-bg'
-                            : 'border-border bg-surface text-fg-muted hover:border-border-strong hover:text-fg',
-                        )}
-                      >
-                        {c}
+                      <button key={name} type="button" aria-pressed={active} onClick={() => setParam('industry', name)} className={chip(active)}>
+                        {name}
+                        <span className={cn('text-xs', active ? 'text-bg/70' : 'text-fg-subtle')}>{count}</span>
                       </button>
                     );
                   })}
-                </div>
-                <div className="relative w-full lg:w-72">
-                  <label htmlFor="project-search" className="sr-only">
-                    Search projects
-                  </label>
-                  <Search className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-fg-subtle" aria-hidden="true" />
-                  <input
-                    id="project-search"
-                    type="search"
-                    placeholder="Search by name or technology"
-                    value={query}
-                    onChange={(e) => setParam('q', e.target.value)}
-                    className="h-11 w-full rounded-full border border-border bg-surface pr-4 pl-10 text-sm text-fg outline-none placeholder:text-fg-subtle focus:border-accent focus:ring-4 focus:ring-accent-soft"
-                  />
                 </div>
               </div>
             )}

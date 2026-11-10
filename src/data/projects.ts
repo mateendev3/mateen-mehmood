@@ -25,6 +25,7 @@ import type { Project } from '../types/index.ts';
  *    subtitle: 'One-line tagline',
  *    summary: 'Short description for cards and search results.',
  *    category: 'Mobile Apps',            // 'Mobile Apps' | 'Web Applications' | 'Custom Software' | 'AI & Automation'
+ *    industries: ['Health', 'Fintech'],  // any labels — filters are generated from these
  *    platforms: ['iOS', 'Android'],
  *    technologies: ['Flutter', 'Firebase'],
  *    year: '2024',
@@ -51,6 +52,7 @@ export const projects: Project[] = [
     summary:
       'An education app connecting parents with qualified teachers for private video lessons in Quran, Islamic values, languages and behaviour — with scheduling, chat and secure payments.',
     category: 'Mobile Apps',
+    industries: ['Education'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used, e.g. ['Flutter', 'Dart', 'Firebase', 'Stripe']
     technologies: [],
@@ -118,6 +120,7 @@ export const projects: Project[] = [
     summary:
       'A consultation app where users pick an expert dream interpreter, book a private call or message session and pay securely — all in one place.',
     category: 'Mobile Apps',
+    industries: ['Lifestyle', 'Marketplace'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used, e.g. ['Flutter', 'Dart', 'Firebase', 'Stripe']
     technologies: [],
@@ -186,6 +189,7 @@ export const projects: Project[] = [
     summary:
       'A booking marketplace connecting clients with screened braiders and salons — real-photo styles, reviews, in-app chat, reminders and secure upfront payments.',
     category: 'Mobile Apps',
+    industries: ['Beauty', 'Marketplace'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -246,6 +250,7 @@ export const projects: Project[] = [
     summary:
       'A social scoreboard for everyday games and sports: live scorekeeping, head-to-head rivalries, stats dashboards and a social feed of friends’ results.',
     category: 'Mobile Apps',
+    industries: ['Sports', 'Social'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -305,6 +310,7 @@ export const projects: Project[] = [
     summary:
       'A large-scale lifestyle and telecom app for Jazz: manage mobile usage and packages, unlock perks and discounts, discover events and play games for rewards.',
     category: 'Mobile Apps',
+    industries: ['Telecom', 'Lifestyle'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -374,6 +380,7 @@ export const projects: Project[] = [
     summary:
       'Companion app for Layla’s AI-powered property sensor — air, comfort, noise and presence insights, sleep scores, smart alerts and remote AC control across every property.',
     category: 'Mobile Apps',
+    industries: ['AI', 'IoT & Smart Home'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -437,6 +444,7 @@ export const projects: Project[] = [
     summary:
       'Telecom self-care app for Salam: buy a SIM or eSIM line, activate it in minutes, track data and balance, and recharge instantly — used by 1M+ customers.',
     category: 'Mobile Apps',
+    industries: ['Telecom'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -502,6 +510,7 @@ export const projects: Project[] = [
     summary:
       'A coffee wallet and gifting app: top up “Beans”, earn bonus Beans, pay at partner cafés by QR code and send coffee to friends in seconds.',
     category: 'Mobile Apps',
+    industries: ['Food & Drink', 'Fintech'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -564,6 +573,7 @@ export const projects: Project[] = [
     summary:
       'The official self-care app for Sudani subscribers: track balance and usage, buy or build custom bundles, earn loyalty rewards and access digital services — at zero data cost.',
     category: 'Mobile Apps',
+    industries: ['Telecom'],
     platforms: ['Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -627,6 +637,7 @@ export const projects: Project[] = [
     summary:
       'Companion app for a health check-up and teleconsultation kiosk: session history, a personal health profile, connections with professionals and rewards that keep users engaged.',
     category: 'Mobile Apps',
+    industries: ['Health'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -688,6 +699,7 @@ export const projects: Project[] = [
     summary:
       'Telecom super-app for Mobily customers: manage every line, pay bills and recharge, subscribe to plans and add-ons, shop devices and redeem Neqaty rewards.',
     category: 'Mobile Apps',
+    industries: ['Telecom', 'E-commerce'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -756,6 +768,7 @@ export const projects: Project[] = [
     summary:
       'Interview-prep app with role-specific question banks, mock interviews with instant feedback, industry courses, study plans and offline access.',
     category: 'Mobile Apps',
+    industries: ['Education'],
     platforms: ['Android'],
     // TODO: add the stack you used
     technologies: [],
@@ -815,6 +828,7 @@ export const projects: Project[] = [
     summary:
       'Health-plan app for Savvos members: digital plan and Rx cards, virtual and in-person doctor visits, card-based visit payments and support messaging.',
     category: 'Mobile Apps',
+    industries: ['Health', 'Fintech'],
     platforms: ['iOS', 'Android'],
     // TODO: add the stack you used
     technologies: [],

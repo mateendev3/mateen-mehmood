@@ -40,7 +40,7 @@ export function ProjectCard({
 
       <div className={cn('flex flex-1 flex-col p-6', wide && 'md:justify-center md:p-10')}>
         <p className="text-sm text-fg-subtle">
-          <span className="font-medium text-accent">{project.category}</span>
+          <span className="font-medium text-accent">{(project.industries.length ? project.industries : [project.category]).join(' · ')}</span>
           {project.platforms.length > 0 && <span> · {project.platforms.join(', ')}</span>}
         </p>
         <Heading className={cn('mt-2 font-semibold', wide ? 'text-xl md:text-3xl md:font-bold' : 'text-xl')}>
