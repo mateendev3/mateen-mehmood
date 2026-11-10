@@ -1148,14 +1148,15 @@ export const projects: Project[] = [
     industries: ['AI', 'Energy', 'Hospitality'],
     platforms: ['Web'],
     technologies: [
+      'Next.js',
       'React',
       'TypeScript',
-      'Vite',
       'Tailwind CSS',
-      'shadcn/ui',
-      'React Query',
-      'Zod',
+      'Python',
+      'Django',
+      'Celery',
       'PostgreSQL',
+      'Hetzner',
       'Google Cloud Vision',
       'Stripe',
     ],
@@ -1168,7 +1169,7 @@ export const projects: Project[] = [
     challenge:
       'Mid-market hotel groups are too small for enterprise energy tools and too complex for basic software, so most run their utilities from spreadsheets. Traditional energy audits take months and cost thousands, which means savings opportunities go unnoticed.',
     solution:
-      'An AI-assisted pipeline that reads Spanish utility bills with OCR, normalises consumption for weather and occupancy, benchmarks each property against similar buildings in its climate zone, and generates realistic, non-overlapping savings estimates shown as ranges. Recommendations are ranked by ROI and payback, then connected to a supplier marketplace and a monthly verification engine that proves actual savings per measure.',
+      'A Next.js web app backed by a Python/Django API and PostgreSQL, hosted on Hetzner. An AI-assisted pipeline reads Spanish utility bills with OCR, normalises consumption for weather and occupancy, benchmarks each property against similar buildings in its climate zone, and generates realistic, non-overlapping savings estimates shown as ranges. Recommendations are ranked by ROI and payback, then connected to a supplier marketplace and a monthly verification engine — run as scheduled background jobs — that proves actual savings per measure.',
     myRole: [],
     features: [
       {
