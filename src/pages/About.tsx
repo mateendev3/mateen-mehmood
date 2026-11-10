@@ -174,7 +174,7 @@ function ProfileCard() {
         {apps.length > 0 && (
           <div className="mt-6 border-t border-border pt-5">
             <p className="text-xs font-semibold tracking-wider text-fg-subtle uppercase">Apps I’ve worked on</p>
-            <ul className="mt-3 grid gap-1.5" style={{ gridTemplateColumns: `repeat(${Math.min(apps.length, 9)}, minmax(0, 1fr))` }}>
+            <ul className="mt-3 grid gap-1.5" style={{ gridTemplateColumns: `repeat(${apps.length > 9 ? Math.ceil(apps.length / 2) : apps.length}, minmax(0, 1fr))` }}>
               {apps.map((p) => (
                 <li key={p.slug}>
                   <Link

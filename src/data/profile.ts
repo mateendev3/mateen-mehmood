@@ -88,8 +88,8 @@ export const profile: Profile = {
     // Verified from the App Store / Google Play listings of the apps in projects.ts.
     highlights: [
       { value: '10 yrs', label: 'Building software' },
-      { value: '12M+', label: 'Downloads across apps I’ve worked on' },
-      { value: '5', label: 'Countries — KSA, Pakistan, Sudan, Kenya, USA' },
+      { value: '22M+', label: 'Downloads across apps I’ve worked on' },
+      { value: '6', label: 'Countries — KSA, Pakistan, Sudan, Kenya, USA, France' },
     ],
     journey: [
       "Over the past ten years I've built software across the whole product: native Android and cross-platform Flutter apps for iOS and Android, web platforms, and the backend services that power them with Node.js, Go and Firebase.",

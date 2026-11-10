@@ -109,7 +109,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 9,
+    order: 11,
   },
   {
     slug: 'dream',
@@ -177,7 +177,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 8,
+    order: 10,
   },
   {
     slug: 'braiding-nairobi',
@@ -237,7 +237,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 5,
+    order: 7,
   },
   {
     slug: 'talli',
@@ -493,7 +493,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 7,
+    order: 9,
   },
   {
     slug: 'etgahwa',
@@ -618,6 +618,194 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
+    order: 8,
+  },
+  {
+    slug: 'bodyo',
+    title: 'Bodyo',
+    subtitle: 'Telehealth and wellness companion app for Bodyo’s check-up and teleconsultation kiosks.',
+    summary:
+      'Companion app for a health check-up and teleconsultation kiosk: session history, a personal health profile, connections with professionals and rewards that keep users engaged.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/bodyo/icon.jpg',
+    coverImage: '/images/projects/bodyo/cover.jpg',
+    coverAlt: 'Bodyo app screens: session history, health profile and settings',
+    client: 'Matrix SAS (Bodyo)',
+    overview:
+      'Bodyo builds health kiosks for check-ups and teleconsultations. The Bodyo app extends that experience to the user’s phone — a daily health and wellness companion linked to their kiosk sessions.\n\nUsers review their check-up history, keep a personal health profile, connect with health and wellness professionals and their community, and stay motivated through incentives and rewards on their journey to better health.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Kiosk-linked check-ups',
+        description: 'Results from Bodyo health kiosk sessions are available in the app after each check-up.',
+      },
+      {
+        title: 'Session history',
+        description: 'A dated history of every check-up and teleconsultation session in one list.',
+      },
+      {
+        title: 'Personal health profile',
+        description: 'Weight, height, age and blood type in a customised profile that feeds into each session.',
+      },
+      {
+        title: 'Telehealth & professionals',
+        description: 'Connect with health and wellness professionals for guidance between kiosk visits.',
+      },
+      {
+        title: 'Community & rewards',
+        description: 'Incentives and rewards that keep users motivated on their wellness journey.',
+      },
+      {
+        title: 'Preferences & dark mode',
+        description: 'Account settings, units of measure, help and a dark mode for comfortable use.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/bodyo/screen-1.jpg', alt: 'Bodyo — unleash the power of telehealth', orientation: 'portrait', frame: false },
+      { src: '/images/projects/bodyo/screen-2.jpg', alt: 'Bodyo home screen', orientation: 'portrait', frame: false },
+      { src: '/images/projects/bodyo/screen-3.jpg', alt: 'Session history of kiosk check-ups', orientation: 'portrait', frame: false },
+      { src: '/images/projects/bodyo/screen-4.jpg', alt: 'Settings with preferences and dark mode', orientation: 'portrait', frame: false },
+      { src: '/images/projects/bodyo/screen-5.jpg', alt: 'Customised health profile', orientation: 'portrait', frame: false },
+    ],
+    results: ['Live on iOS and Android since 2023'],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/bodyo/id1643950621',
+      playStore: 'https://play.google.com/store/apps/details?id=com.flutter.bodyo',
+      website: 'https://bodyo.com/',
+    },
+    featured: false,
+    published: true,
+    order: 5,
+  },
+  {
+    slug: 'mobily',
+    title: 'Mobily',
+    subtitle: 'The official app of Mobily — one of Saudi Arabia’s largest telecom operators — used by millions.',
+    summary:
+      'Telecom super-app for Mobily customers: manage every line, pay bills and recharge, subscribe to plans and add-ons, shop devices and redeem Neqaty rewards.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/mobily/icon.jpg',
+    coverImage: '/images/projects/mobily/cover.jpg',
+    coverAlt: 'Mobily app screens: mobile plans, account dashboard and Neqaty rewards',
+    client: 'Etihad Etisalat (Mobily)',
+    overview:
+      'The Mobily app puts all of a customer’s Mobily products and services in one place. It streamlines account management with a modern, clean interface and fast access to bills, balances and usage — for prepaid, postpaid and data customers alike.\n\nBeyond account management, it is a full commerce and loyalty platform: customers buy new lines, SIMs, eSIMs, fibre and the latest smartphones for delivery, subscribe to packages and add-ons in one tap, and earn and redeem Neqaty loyalty points with partner brands.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Plans & packages',
+        description: 'Compare postpaid, prepaid and data plans and subscribe or unsubscribe with one tap.',
+      },
+      {
+        title: 'Bills, usage & recharge',
+        description: 'See bills, unbilled amounts and remaining data and minutes, then pay or recharge by card.',
+      },
+      {
+        title: 'Shop on demand',
+        description: 'Order the latest smartphones, new lines, SIMs, eSIMs and fibre for delivery.',
+      },
+      {
+        title: 'All lines in one place',
+        description: 'Manage every number under one account — subscriptions, credit limits and line services.',
+      },
+      {
+        title: 'Neqaty rewards',
+        description: 'Earn loyalty points and redeem them for voice, bills and partner offers.',
+      },
+      {
+        title: 'Human support',
+        description: 'Reach real support agents through social and in-app channels.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/mobily/screen-1.jpg', alt: 'Everything Mobily, all in one place', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mobily/screen-2.jpg', alt: 'Mobily app splash on iPhone', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mobily/screen-3.jpg', alt: 'Mobile plans with postpaid, prepaid and data options', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mobily/screen-4.jpg', alt: 'Account dashboard with bill, data and minutes', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mobily/screen-5.jpg', alt: 'Shop the latest smartphones and services', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mobily/screen-6.jpg', alt: 'Line management and new line purchase', orientation: 'portrait', frame: false },
+      { src: '/images/projects/mobily/screen-7.jpg', alt: 'Neqaty loyalty points and partner rewards', orientation: 'portrait', frame: false },
+    ],
+    results: [
+      '10M+ downloads on Google Play',
+      '4.8★ from 50,000+ ratings on the App Store',
+      '284K+ reviews on Google Play',
+      'Continuously updated with frequent releases',
+    ],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/mobily-%D9%85%D9%88%D8%A8%D8%A7%D9%8A%D9%84%D9%8A/id375539359',
+      playStore: 'https://play.google.com/store/apps/details?id=com.mobily.activity',
+      website: 'https://www.mobily.com.sa',
+    },
+    featured: true,
+    published: true,
     order: 6,
+  },
+  {
+    slug: 'preppace',
+    title: 'PrepPace: Ace Your Interview',
+    subtitle: 'A job-interview preparation app — question banks, mock interviews and expert tips in your pocket.',
+    summary:
+      'Interview-prep app with role-specific question banks, mock interviews with instant feedback, industry courses, study plans and offline access.',
+    category: 'Mobile Apps',
+    platforms: ['Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/preppace/icon.jpg',
+    coverImage: '/images/projects/preppace/cover.jpg',
+    coverAlt: 'PrepPace app screens: courses, practice questions and mock answers',
+    client: 'DigiOrbitz',
+    overview:
+      'PrepPace helps job seekers walk into interviews with confidence — whether they are freshers or experienced professionals. It brings together practice questions tailored to role and industry, expert tips on what employers look for, and realistic mock interviews.\n\nLearners follow topics and courses on the latest industry trends, take quizzes with explanations, track their progress with personalised study plans, and keep studying offline.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Role-specific question banks',
+        description: 'Practice questions for freshers and experienced professionals across many industries.',
+      },
+      {
+        title: 'Mock interviews & feedback',
+        description: 'Rehearse realistic scenarios and get instant, actionable feedback on every answer.',
+      },
+      {
+        title: 'Quizzes with explanations',
+        description: 'Multiple-choice practice with right/wrong highlighting and a clear explanation for each answer.',
+      },
+      {
+        title: 'Courses & industry trends',
+        description: 'Topic-based courses and recent-quiz tracking from a personalised home screen.',
+      },
+      {
+        title: 'Personalised study plans',
+        description: 'Set goals, track progress and make sure every key topic is covered before the interview.',
+      },
+      {
+        title: 'Offline access',
+        description: 'Download questions and guides to keep preparing without an internet connection.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/preppace/screen-1.jpg', alt: 'Welcome to PrepPace', orientation: 'portrait', frame: false },
+      { src: '/images/projects/preppace/screen-2.jpg', alt: 'Learn with experts anytime, anywhere', orientation: 'portrait', frame: false },
+      { src: '/images/projects/preppace/screen-3.jpg', alt: 'Home with topics, top courses and recent quizzes', orientation: 'portrait', frame: false },
+      { src: '/images/projects/preppace/screen-4.jpg', alt: 'Mock interview questions and answers', orientation: 'portrait', frame: false },
+      { src: '/images/projects/preppace/screen-5.jpg', alt: 'Practice question with answer explanation', orientation: 'portrait', frame: false },
+    ],
+    results: ['Published on Google Play'],
+    links: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.preppace.preppace.preppace',
+    },
+    featured: false,
+    published: true,
+    order: 12,
   },
 ];
