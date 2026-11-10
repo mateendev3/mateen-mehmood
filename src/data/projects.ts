@@ -1337,4 +1337,64 @@ export const projects: Project[] = [
     published: true,
     order: 20,
   },
+  {
+    slug: 'learn-plus',
+    title: 'Learn Plus',
+    subtitle: 'A bilingual (English/Arabic) learning app for Advanced Learning Academy — courses, Zoom live classes, quizzes and certificates.',
+    summary:
+      'A Flutter LMS for Saudi school-age learners: course catalogue, video lessons, Zoom live classes, interactive quizzes, progress tracking, certificates and subscriptions — fully in English and Arabic.',
+    category: 'Mobile Apps',
+    industries: ['Education'],
+    platforms: ['iOS', 'Android'],
+    technologies: ['Flutter', 'Dart', 'Firebase', 'Zoom SDK', 'BLoC', 'go_router', 'Dio', 'Microsoft Clarity'],
+    icon: '/images/projects/learn-plus/icon.jpg',
+    coverImage: '/images/projects/learn-plus/cover.jpg',
+    coverAlt: 'Learn Plus app screens: live sessions, home and onboarding',
+    client: 'Advanced Learning Company (ALC), Saudi Arabia',
+    overview:
+      'Learn Plus — the Advanced Learning Academy (ALA) app — extends classroom education for school-age students in Saudi Arabia. Students discover courses, learn through video lessons and PDFs, join live classes over Zoom, complete interactive assessments, track their progress and earn certificates, all in a fully bilingual English and Arabic experience.\n\nPositioned around “empowering future leaders of Saudi Arabia”, the platform blends AI-assisted learning with proven teaching, and sits within the wider ALW ecosystem that connects students with parents, teachers and mentors.',
+    challenge:
+      'Students needed one place to continue learning beyond the classroom — on-demand courses, live teaching and assessments — in their own language, with the right cultural context and support for Saudi curricula such as Qiyas subjects.',
+    solution:
+      'A cross-platform Flutter app built on clean architecture (BLoC, repository pattern, Dio, go_router) with full RTL and Arabic typography. It integrates the Zoom Meeting SDK for live classes and recordings, rich media players for video, PDF and math content, social sign-in, and Firebase Analytics, Crashlytics and Remote Config for insight and reliability.',
+    myRole: [],
+    features: [
+      {
+        title: 'Bilingual EN/AR with RTL',
+        description: 'A complete English and Arabic experience with right-to-left layouts and Arabic typography.',
+      },
+      {
+        title: 'Course catalogue & search',
+        description: 'Categories, featured and popular courses, top instructors, filters and smart search suggestions.',
+      },
+      {
+        title: 'Zoom live classes',
+        description: 'Today, upcoming and past sessions with one-tap join, recordings and class materials.',
+      },
+      {
+        title: 'Interactive quizzes',
+        description: 'Multiple choice, true/false, matching, drag-and-drop and essay questions.',
+      },
+      {
+        title: 'Progress & certificates',
+        description: 'Ongoing course progress, achievements, reminders and certificates on completion.',
+      },
+      {
+        title: 'Sign-in & subscriptions',
+        description: 'Email, OTP, Google and Apple sign-in, with subscriptions and payment status in SAR.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/learn-plus/screen-1.jpg', alt: 'Onboarding: Advance Learning World', orientation: 'portrait', frame: false },
+      { src: '/images/projects/learn-plus/screen-2.jpg', alt: 'Sign in to the LMS with email or Google', orientation: 'portrait', frame: false },
+      { src: '/images/projects/learn-plus/screen-3.jpg', alt: 'Home with categories and featured courses', orientation: 'portrait' },
+      { src: '/images/projects/learn-plus/screen-4.jpg', alt: 'Home with ongoing course progress', orientation: 'portrait' },
+      { src: '/images/projects/learn-plus/screen-5.jpg', alt: 'Search with recent searches and suggestions', orientation: 'portrait' },
+      { src: '/images/projects/learn-plus/screen-6.jpg', alt: 'Filtered course results', orientation: 'portrait' },
+      { src: '/images/projects/learn-plus/screen-7.jpg', alt: 'Live sessions: today, upcoming and past', orientation: 'portrait' },
+    ],
+    featured: false,
+    published: true,
+    order: 21,
+  },
 ];

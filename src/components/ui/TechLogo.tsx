@@ -45,6 +45,7 @@ import {
   siVuedotjs,
   siXcode,
   siZod,
+  siZoom,
   type SimpleIcon,
 } from 'simple-icons';
 import { cn } from '../../lib/utils';
@@ -101,6 +102,7 @@ const logos: Record<string, SimpleIcon> = {
   'Google Cloud Vision': siGooglecloud,
   // Integrations & tools
   Stripe: siStripe,
+  'Zoom SDK': siZoom,
   Docker: siDocker,
   Git: siGit,
   GitHub: siGithub,
