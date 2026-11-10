@@ -89,7 +89,7 @@ export const profile: Profile = {
     highlights: [
       { value: '10 yrs', label: 'Building software' },
       { value: '22M+', label: 'Downloads across apps I’ve worked on' },
-      { value: '7', label: 'Countries — KSA, Pakistan, Sudan, Kenya, USA, Canada, France' },
+      { value: '8', label: 'Countries — KSA, Pakistan, Sudan, Kenya, USA, Canada, France, Netherlands' },
     ],
     journey: [
       "Over the past ten years I've built software across the whole product: native Android and cross-platform Flutter apps for iOS and Android, web platforms, and the backend services that power them with Node.js, Go and Firebase.",

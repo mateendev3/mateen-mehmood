@@ -1275,4 +1275,66 @@ export const projects: Project[] = [
     published: true,
     order: 19,
   },
+  {
+    slug: 'my-treats',
+    title: 'My Treats',
+    subtitle: 'A restaurant guide that matches places to your diet and sustainability values — discover, book and share.',
+    summary:
+      'A restaurant discovery app: find places by dietary preference and sustainability, explore them on a map, see transparency scores, book a table and share lists with friends.',
+    category: 'Mobile Apps',
+    industries: ['Food & Drink', 'Social'],
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/treats/icon.jpg',
+    coverImage: '/images/projects/treats/cover.jpg',
+    coverAlt: 'My Treats app screens: restaurant map, discovery feed and sustainability scores',
+    client: 'Treats Market B.V.',
+    overview:
+      'My Treats is a culinary compass that helps people decide where — and what — to eat. Recommendations are tailored to each user’s taste, dietary preferences and sustainability expectations, from affordable to fine dining and from vegan to flexitarian.\n\nRestaurants show transparent scores for things like local and seasonal products, food-waste reduction and sustainable sourcing, so diners can make informed choices — then book a table and save or share their favourite places with friends.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Personalised discovery',
+        description: 'Restaurants matched to dietary preferences and sustainability expectations.',
+      },
+      {
+        title: 'Map exploration',
+        description: 'Browse every restaurant on a map, from affordable to expensive and vegan to flexitarian.',
+      },
+      {
+        title: 'Transparency scores',
+        description: 'Ratings for local and seasonal products, food-waste reduction and sustainable sourcing.',
+      },
+      {
+        title: 'In-app table booking',
+        description: 'Reserve a table directly from the restaurant page.',
+      },
+      {
+        title: 'Lists & sharing',
+        description: 'Save favourites into lists and share them with friends.',
+      },
+      {
+        title: 'Restaurant profiles',
+        description: 'Menus, reviews and practical details for each restaurant in one place.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/treats/screen-1.jpg', alt: 'Discover restaurants by diet and sustainability', orientation: 'portrait', frame: false },
+      { src: '/images/projects/treats/screen-2.jpg', alt: 'Restaurant map', orientation: 'portrait', frame: false },
+      { src: '/images/projects/treats/screen-3.jpg', alt: 'Book a table in the app', orientation: 'portrait', frame: false },
+      { src: '/images/projects/treats/screen-4.jpg', alt: 'Sustainability transparency scores', orientation: 'portrait', frame: false },
+      { src: '/images/projects/treats/screen-5.jpg', alt: 'Saved lists shared with friends', orientation: 'portrait', frame: false },
+    ],
+    results: ['5K+ downloads on Google Play', '5.0★ rating on the App Store', 'Live on iOS and Android since 2022'],
+    links: {
+      appStore: 'https://apps.apple.com/nl/app/my-treats-restaurant-guide/id6443829668?l=en-GB',
+      playStore: 'https://play.google.com/store/apps/details?id=com.treats.app',
+      website: 'https://www.mytreats.app/',
+    },
+    featured: false,
+    published: true,
+    order: 20,
+  },
 ];
