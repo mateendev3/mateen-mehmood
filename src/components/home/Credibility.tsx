@@ -4,7 +4,7 @@ import { Reveal } from '../ui/Reveal';
 export function Credibility() {
   if (profile.stats.length === 0) return null;
   return (
-    <section aria-label="Experience at a glance" className="pb-4">
+    <section aria-label="Experience at a glance" className="pt-12 pb-4 sm:pt-16">
       <div className="container-page">
         <Reveal>
           <dl className="card grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
