@@ -808,4 +808,66 @@ export const projects: Project[] = [
     published: true,
     order: 12,
   },
+  {
+    slug: 'savvos-smartpay',
+    title: 'Savvos SmartPay',
+    subtitle: 'A health plan in your pocket — plan cards, virtual visits and paying for care in a few taps.',
+    summary:
+      'Health-plan app for Savvos members: digital plan and Rx cards, virtual and in-person doctor visits, card-based visit payments and support messaging.',
+    category: 'Mobile Apps',
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/savvos-smartpay/icon.jpg',
+    coverImage: '/images/projects/savvos-smartpay/cover.jpg',
+    coverAlt: 'Savvos SmartPay app screens: start a visit, plan cards and paying for a visit',
+    client: 'Savvos Health, Inc.',
+    overview:
+      'SmartPay puts a Savvos member’s health plan in the palm of their hand. Members can see their plan information, coverage and benefits at any time, get care from licensed providers through virtual visits, and pay for doctor visits with just a few taps.\n\nFor in-person care, members start a visit by choosing the type of care and clinic; funds are loaded to their benefit card for the visit, and they submit an overview and itemised receipt afterwards — with payment history and support always one tap away.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Plan & Rx ID cards',
+        description: 'Digital health plan and prescription cards, with Add to Wallet and download options.',
+      },
+      {
+        title: 'Virtual & in-person visits',
+        description: 'Choose primary, urgent, specialist or mental-health care and start a visit in minutes.',
+      },
+      {
+        title: 'Pay for a doctor visit',
+        description: 'Funds are added to your benefit card for each visit, with the available balance shown up front.',
+      },
+      {
+        title: 'Receipts & payment history',
+        description: 'Submit visit overviews and itemised receipts, and track every payment in one place.',
+      },
+      {
+        title: 'Coverage & benefits',
+        description: 'View plan information, coverage details and benefits whenever you need them.',
+      },
+      {
+        title: 'Support messaging',
+        description: 'Message the Savvos support team directly from the app.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/savvos-smartpay/screen-1.jpg', alt: 'Savvos SmartPay — the future of health plans', orientation: 'portrait', frame: false },
+      { src: '/images/projects/savvos-smartpay/screen-2.jpg', alt: 'Choose a type of in-person visit', orientation: 'portrait', frame: false },
+      { src: '/images/projects/savvos-smartpay/screen-3.jpg', alt: 'Start a doctor visit', orientation: 'portrait', frame: false },
+      { src: '/images/projects/savvos-smartpay/screen-4.jpg', alt: 'Access plan and Rx ID cards', orientation: 'portrait', frame: false },
+      { src: '/images/projects/savvos-smartpay/screen-5.jpg', alt: 'Pay for a doctor visit with the benefit card', orientation: 'portrait', frame: false },
+      { src: '/images/projects/savvos-smartpay/screen-6.jpg', alt: 'Message the support team', orientation: 'portrait', frame: false },
+    ],
+    results: ['4.7★ rating on the App Store', 'Live on iOS and Android since 2025, with regular updates'],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/savvos-smartpay/id6748625187',
+      playStore: 'https://play.google.com/store/apps/details?id=com.savvos.smartpay',
+      website: 'https://savvos.com',
+    },
+    featured: false,
+    published: true,
+    order: 13,
+  },
 ];
