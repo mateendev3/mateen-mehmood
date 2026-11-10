@@ -884,4 +884,67 @@ export const projects: Project[] = [
     published: true,
     order: 13,
   },
+  {
+    slug: 'carpooll',
+    title: 'Carpooll.com: Smart Rideshare',
+    subtitle: 'Canada’s fast-growing city-to-city carpool platform — verified drivers and riders, shared costs, fewer emissions.',
+    summary:
+      'A city-to-city rideshare marketplace: post or find rides, instant matching, ID-verified profiles, in-app payments and chat, plus Pinkpool for women-only rides.',
+    category: 'Mobile Apps',
+    industries: ['Travel', 'Marketplace'],
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/carpooll/icon.jpg',
+    coverImage: '/images/projects/carpooll/cover.jpg',
+    coverAlt: 'Carpooll app screens: matching rides, home and Pinkpool',
+    client: 'Greenpool Ltd',
+    overview:
+      'Carpooll.com connects drivers and riders across Canada for city-to-city trips. Drivers post a ride in about 30 seconds, set their price and accept requests; riders find a seat to their destination, book and pay in the app.\n\nThe platform is built around trust: every driver and rider is ID-verified, profiles carry ratings and reviews, and Pinkpool gives women the option to ride only with other women. Shared rides cut travel costs, traffic and carbon emissions.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Post or find a ride',
+        description: 'Drivers publish a trip in seconds; riders search city-to-city routes and book a seat.',
+      },
+      {
+        title: 'Instant matching',
+        description: 'Matching rides with driver, price, date, pickup and drop-off at a glance.',
+      },
+      {
+        title: 'Verified profiles & reviews',
+        description: 'ID-verified drivers and riders with star ratings, reviews and response rates.',
+      },
+      {
+        title: 'Flexible payments',
+        description: 'Pay in the app, by Interac or in cash, with promo codes at checkout.',
+      },
+      {
+        title: 'Pinkpool',
+        description: 'A dedicated women-only rideshare experience with female drivers and SOS safety features.',
+      },
+      {
+        title: 'Chat & notifications',
+        description: 'In-app messaging with carpool partners and real-time ride reminders.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/carpooll/screen-1.jpg', alt: 'Home screen: post a ride or find a ride', orientation: 'portrait', frame: false },
+      { src: '/images/projects/carpooll/screen-2.jpg', alt: 'Verified driver profile with reviews', orientation: 'portrait', frame: false },
+      { src: '/images/projects/carpooll/screen-3.jpg', alt: 'Payment with cash, Interac or in-app', orientation: 'portrait', frame: false },
+      { src: '/images/projects/carpooll/screen-4.jpg', alt: 'Instant matching rides list', orientation: 'portrait', frame: false },
+      { src: '/images/projects/carpooll/screen-5.jpg', alt: 'Pinkpool women-only rideshare', orientation: 'portrait', frame: false },
+      { src: '/images/projects/carpooll/screen-6.jpg', alt: 'Messages with carpool partners', orientation: 'portrait', frame: false },
+    ],
+    results: ['10K+ downloads on Google Play', '5.0★ rating on the App Store', 'Live on iOS and Android since 2024'],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/carpooll-com-smart-rideshare/id6480311009',
+      playStore: 'https://play.google.com/store/apps/details?id=com.iu.green_pool',
+      website: 'https://carpooll.com',
+    },
+    featured: false,
+    published: true,
+    order: 14,
+  },
 ];
