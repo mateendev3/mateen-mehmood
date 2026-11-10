@@ -111,7 +111,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 11,
+    order: 12,
   },
   {
     slug: 'dream',
@@ -180,7 +180,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 10,
+    order: 11,
   },
   {
     slug: 'braiding-nairobi',
@@ -241,7 +241,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 7,
+    order: 8,
   },
   {
     slug: 'talli',
@@ -501,7 +501,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 9,
+    order: 10,
   },
   {
     slug: 'etgahwa',
@@ -628,7 +628,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 8,
+    order: 9,
   },
   {
     slug: 'bodyo',
@@ -690,7 +690,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 5,
+    order: 6,
   },
   {
     slug: 'mobily',
@@ -759,7 +759,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 6,
+    order: 7,
   },
   {
     slug: 'preppace',
@@ -819,7 +819,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 12,
+    order: 13,
   },
   {
     slug: 'savvos-smartpay',
@@ -882,7 +882,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 13,
+    order: 14,
   },
   {
     slug: 'carpooll',
@@ -945,7 +945,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 14,
+    order: 15,
   },
   {
     slug: 'safedeposit',
@@ -1007,7 +1007,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 15,
+    order: 16,
   },
   {
     slug: 'safetytracker',
@@ -1069,6 +1069,73 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 16,
+    order: 17,
+  },
+  {
+    slug: 'revl',
+    title: 'REVL.',
+    subtitle: 'Mystery boxes and Pokémon packs with guaranteed real value — reveal it, then ship it home or sell it back.',
+    summary:
+      'A collectibles commerce app: open mystery boxes and Pokémon packs with transparent odds and a guaranteed value floor, then ship items home or sell them back for credit.',
+    category: 'Mobile Apps',
+    industries: ['E-commerce', 'Gaming & Collectibles'],
+    platforms: ['iOS', 'Android'],
+    // TODO: add the stack you used
+    technologies: [],
+    icon: '/images/projects/revl/icon.jpg',
+    coverImage: '/images/projects/revl/cover.jpg',
+    coverAlt: 'REVL app screens: Pokémon packs, pack reveal and ship-or-sell flow',
+    client: 'LaylaElectric, Inc.',
+    overview:
+      'REVL turns unboxing into a fair, transparent shopping experience. Users open mystery boxes — sneakers and streetwear, tech, beauty, jewellery, gaming and more — or Pokémon packs, each guaranteed to contain a real product worth at least what they paid.\n\nEvery box shows its full value range and the odds of each tier before purchase, and results are provably fair: locked in before opening and verifiable afterwards. After a reveal, users ship the item to their door with tracking, keep it in their collection, or sell it back for up to 100% of its value in store credit.',
+    // TODO: describe your own contribution
+    myRole: [],
+    features: [
+      {
+        title: 'Mystery boxes of real goods',
+        description: 'Sneakers, streetwear, tech, beauty, jewellery and collectibles — never worth less than the box.',
+      },
+      {
+        title: 'Pokémon packs with a floor',
+        description: 'Each pack holds a genuine card, from fan favourites to graded chase cards.',
+      },
+      {
+        title: 'Odds shown upfront',
+        description: 'Full value range and the chance of each tier are visible before you pay.',
+      },
+      {
+        title: 'Provably fair reveals',
+        description: 'Results are locked in before opening and can be verified by the user afterwards.',
+      },
+      {
+        title: 'Ship it or sell it back',
+        description: 'Tracked delivery, a personal collection, or instant sell-back for store credit.',
+      },
+      {
+        title: 'Live reveal feed',
+        description: 'Real reactions and fresh reveals from the community in a live feed.',
+      },
+    ],
+    gallery: [
+      { src: '/images/projects/revl/screen-1.jpg', alt: 'REVL — real cards, real watches', orientation: 'portrait', frame: false },
+      { src: '/images/projects/revl/screen-2.jpg', alt: 'Pokémon packs for every collector', orientation: 'portrait', frame: false },
+      { src: '/images/projects/revl/screen-3.jpg', alt: 'See every card before you open', orientation: 'portrait', frame: false },
+      { src: '/images/projects/revl/screen-4.jpg', alt: 'Rip it open: pack reveal', orientation: 'portrait', frame: false },
+      { src: '/images/projects/revl/screen-5.jpg', alt: 'Mystery boxes of watches and sneakers', orientation: 'portrait', frame: false },
+      { src: '/images/projects/revl/screen-6.jpg', alt: 'Ship it home or sell it back for store credit', orientation: 'portrait', frame: false },
+    ],
+    results: [
+      '4.7★ from 690+ ratings on the App Store',
+      '1.7K+ reviews on Google Play',
+      'Launched on iOS and Android in 2026',
+    ],
+    links: {
+      appStore: 'https://apps.apple.com/us/app/revl/id6779568876',
+      playStore: 'https://play.google.com/store/apps/details?id=eco.layla.pullz',
+      website: 'https://revl.gg',
+    },
+    featured: true,
+    published: true,
+    order: 5,
   },
 ];
