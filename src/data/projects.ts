@@ -111,7 +111,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 12,
+    order: 23,
   },
   {
     slug: 'dream',
@@ -180,7 +180,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 11,
+    order: 21,
   },
   {
     slug: 'braiding-nairobi',
@@ -241,7 +241,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 8,
+    order: 6,
   },
   {
     slug: 'talli',
@@ -301,7 +301,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 4,
+    order: 14,
   },
   {
     slug: 'rox',
@@ -371,7 +371,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 3,
+    order: 4,
   },
   {
     slug: 'layla',
@@ -501,7 +501,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 10,
+    order: 20,
   },
   {
     slug: 'etgahwa',
@@ -564,7 +564,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 2,
+    order: 3,
   },
   {
     slug: 'my-sudani',
@@ -628,7 +628,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 9,
+    order: 19,
   },
   {
     slug: 'bodyo',
@@ -690,7 +690,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 6,
+    order: 12,
   },
   {
     slug: 'mobily',
@@ -759,7 +759,7 @@ export const projects: Project[] = [
     },
     featured: true,
     published: true,
-    order: 7,
+    order: 13,
   },
   {
     slug: 'preppace',
@@ -819,7 +819,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 13,
+    order: 22,
   },
   {
     slug: 'savvos-smartpay',
@@ -882,7 +882,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 14,
+    order: 11,
   },
   {
     slug: 'carpooll',
@@ -1007,7 +1007,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 16,
+    order: 18,
   },
   {
     slug: 'safetytracker',
@@ -1213,7 +1213,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 18,
+    order: 7,
   },
   {
     slug: 'layla-hub',
@@ -1273,7 +1273,7 @@ export const projects: Project[] = [
     gallery: [],
     featured: false,
     published: true,
-    order: 19,
+    order: 8,
   },
   {
     slug: 'my-treats',
@@ -1335,7 +1335,7 @@ export const projects: Project[] = [
     },
     featured: false,
     published: true,
-    order: 20,
+    order: 16,
   },
   {
     slug: 'learn-plus',
@@ -1395,7 +1395,7 @@ export const projects: Project[] = [
     ],
     featured: false,
     published: true,
-    order: 21,
+    order: 10,
   },
   {
     slug: 'ai-support-platform',
@@ -1460,7 +1460,7 @@ export const projects: Project[] = [
     gallery: [],
     featured: false,
     published: true,
-    order: 22,
+    order: 9,
   },
   {
     slug: 'ai-shopping-assistant',
@@ -1525,6 +1525,6 @@ export const projects: Project[] = [
     gallery: [],
     featured: false,
     published: true,
-    order: 23,
+    order: 2,
   },
 ];
