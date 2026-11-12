@@ -1462,4 +1462,69 @@ export const projects: Project[] = [
     published: true,
     order: 22,
   },
+  {
+    slug: 'ai-shopping-assistant',
+    title: 'AI E-commerce Shopping Assistant',
+    subtitle: 'A conversational shopping platform — customers find, compare and buy products just by chatting.',
+    summary:
+      'A multi-tenant conversational-commerce SaaS: an AI assistant that searches live catalogues, recommends and compares products, manages the cart and tracks orders, with a dashboard for store owners.',
+    category: 'AI & Automation',
+    industries: ['AI', 'Chatbots', 'E-commerce'],
+    platforms: ['Web', 'iOS', 'Android'],
+    technologies: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Flutter',
+      'Python',
+      'FastAPI',
+      'LLM APIs',
+      'PostgreSQL',
+      'Redis',
+      'Shopify',
+      'WooCommerce',
+      'Stripe',
+      'Docker',
+    ],
+    icon: '/images/projects/ai-shopping-assistant/icon.jpg',
+    coverImage: '/images/projects/ai-shopping-assistant/cover.jpg',
+    coverAlt: 'Illustration of the shopping assistant recommending and comparing headphones',
+    overview:
+      'An AI shopping assistant that plugs into online stores and turns browsing into a conversation. Customers describe what they want — “wireless headphones under $100 with good battery life” — and the assistant searches the live catalogue, recommends suitable products, compares them side by side, adds the chosen item to the cart and hands off to the store’s secure checkout.\n\nIt works as an embeddable website widget, inside mobile apps and as a web app, and every store gets a dashboard to configure its assistant, sync products, review conversations and measure how AI-assisted shopping performs.',
+    challenge:
+      'Shoppers abandon stores when they can’t quickly find the right product among hundreds of pages and filters, and support teams spend time answering the same questions about products, stock and orders.',
+    solution:
+      'A FastAPI backend that connects to Shopify, WooCommerce, Magento and custom stores, combining semantic product search (embeddings and pgvector) with real-time price, stock and order data. The assistant uses tool calling for catalogue search, cart actions and order tracking, verifies customers before showing order details, and streams responses with product cards and comparison tables. Stores are fully isolated in a multi-tenant architecture with role-based access.',
+    myRole: [],
+    features: [
+      {
+        title: 'Conversational product discovery',
+        description: 'Natural-language search with budget, category and brand understanding, plus follow-up questions.',
+      },
+      {
+        title: 'Recommendations & comparisons',
+        description: 'Personalised suggestions, similar and alternative products, and side-by-side comparison tables.',
+      },
+      {
+        title: 'Cart & checkout in chat',
+        description: 'Add, remove and update items, apply discount codes, estimate shipping and hand off to secure checkout.',
+      },
+      {
+        title: 'Orders & support',
+        description: 'Order status, shipment tracking, return and refund guidance, and escalation to a human.',
+      },
+      {
+        title: 'Store integrations',
+        description: 'Shopify, WooCommerce, Magento and custom stores — catalogue, inventory, orders and payments stay in sync.',
+      },
+      {
+        title: 'Store owner dashboard',
+        description: 'Assistant settings, product sync, conversations, promotions, team roles, billing and conversion analytics.',
+      },
+    ],
+    gallery: [],
+    featured: false,
+    published: true,
+    order: 23,
+  },
 ];
