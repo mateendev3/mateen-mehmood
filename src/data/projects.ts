@@ -1397,4 +1397,69 @@ export const projects: Project[] = [
     published: true,
     order: 21,
   },
+  {
+    slug: 'ai-support-platform',
+    title: 'AI Customer Support Platform',
+    subtitle: 'A multi-tenant AI SaaS for customer support — RAG-powered chatbot, omnichannel inbox, human handoff, tickets and automation in one product.',
+    summary:
+      'A full-stack AI support platform: businesses train an assistant on their own knowledge, embed it on web and mobile, connect WhatsApp and email, and manage conversations, tickets and analytics from one dashboard.',
+    category: 'AI & Automation',
+    industries: ['AI', 'Chatbots', 'SaaS'],
+    status: 'In development',
+    platforms: ['Web', 'iOS', 'Android'],
+    technologies: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Flutter',
+      'Python',
+      'FastAPI',
+      'LLM APIs',
+      'PostgreSQL',
+      'Redis',
+      'Celery',
+      'Stripe',
+      'Docker',
+    ],
+    icon: '/images/projects/ai-support-platform/icon.jpg',
+    coverImage: '/images/projects/ai-support-platform/cover.jpg',
+    coverAlt: 'Illustration of the support inbox and the AI chat widget',
+    overview:
+      'More than a chatbot that answers FAQs: a complete customer-support product. Businesses register a workspace, upload their knowledge, configure their AI assistant, connect their channels and manage every conversation — AI or human — from a single dashboard.\n\nThe platform has three parts: an embeddable chat widget with a reusable chat API for Flutter and other mobile apps; a business dashboard for knowledge, assistant settings, the shared inbox, agents, tickets, automations and analytics; and a super-admin console for tenants, subscriptions, platform settings and system health.',
+    challenge:
+      'Growing businesses need fast, accurate, round-the-clock support across many channels, but enterprise helpdesks are expensive and generic chatbots invent answers, can’t take real actions and hand off badly to people.',
+    solution:
+      'An AI engine grounded in each business’s approved content through retrieval-augmented generation (hybrid semantic and keyword search with source citations), with intent detection, controlled tool calling for actions like order tracking and bookings, guardrails against prompt injection, and clean escalation to human agents. Everything is multi-tenant with strict data isolation and role-based access.',
+    myRole: [],
+    features: [
+      {
+        title: 'RAG-grounded AI answers',
+        description: 'Answers from each business’s documents, FAQs and website — with citations and a safe fallback instead of guessing.',
+      },
+      {
+        title: 'Knowledge base management',
+        description: 'Upload PDFs, Word files and CSVs, crawl websites and sitemaps, then test questions against the knowledge.',
+      },
+      {
+        title: 'AI tool calling',
+        description: 'Controlled actions such as order status, shipment tracking, bookings and ticket creation — verified and permission-checked.',
+      },
+      {
+        title: 'Omnichannel inbox',
+        description: 'Website widget, mobile SDK, WhatsApp and email in one shared inbox with routing, assignment and notes.',
+      },
+      {
+        title: 'Human handoff & tickets',
+        description: 'AI summarises and hands over to agents, suggests replies, and creates tickets with priorities and SLAs.',
+      },
+      {
+        title: 'Automation & analytics',
+        description: 'Trigger-based workflows plus AI resolution rate, handoff rate, response times, satisfaction and usage.',
+      },
+    ],
+    gallery: [],
+    featured: false,
+    published: true,
+    order: 22,
+  },
 ];
